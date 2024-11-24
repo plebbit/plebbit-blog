@@ -1,0 +1,39 @@
+.feedPost {
+  font-family: monospace;
+  padding: 40px;
+  padding-left: 15vw;
+  border-bottom: 1px solid #00ff0050;
+}
+
+.feedPost:hover {
+  background-color: #00ff0010;
+  cursor: pointer;
+}
+
+.title {
+  font-family: monospace;
+  font-weight: bold;
+  color: #00ff00;
+  font-size: 25px;
+}
+
+.author {
+  color: #e9e76c8c;
+  font-size: 15px;
+  padding-top: 5px;
+}
+
+.separator:after {
+  content: '•';
+  font-size: 15px;
+  padding: 0 10px;
+}
+
+.secondLine {
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.separator, .comments, .timestamp {
+  color: #00ff008c;
+}

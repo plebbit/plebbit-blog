@@ -17,10 +17,6 @@
   color: #00ff00;
 }
 
-.header a:hover {
-  color: white;
-}
-
 .header a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
@@ -37,7 +33,6 @@
 a:hover:after { 
   width: 100%; 
   left: 0; 
-  background: white;
 }
 
 

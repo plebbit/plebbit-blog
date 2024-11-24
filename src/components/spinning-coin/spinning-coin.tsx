@@ -10,7 +10,7 @@ const SpinningCoin = () => {
           r="151.07" 
           fill="#000" 
           stroke="#e9e76c" 
-          strokeWidth="2"
+          strokeWidth="4"
         />
         <g transform="translate(-229.37 -308.69)">
           <circle cx="334.04" cy="399.32" r="14.563" fill="#e9e76c"/>
