@@ -1,0 +1,59 @@
+.header {
+  align-items: center;
+  height: 60px;
+  border-bottom: 1px solid #00ff00;
+  background: black;
+  font-family: monospace;
+  padding: 0 80px;
+}
+
+.header a {
+  text-decoration: none;
+  font-size: 15px;
+  display: inline-block;
+  margin: 20px;
+  padding: 0 5px 10px 5px;
+  position: relative;
+  color: #00ff00;
+}
+
+.header a:hover {
+  color: white;
+}
+
+.header a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  position: absolute;
+  background: #00ff00;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+a:hover:after { 
+  width: 100%; 
+  left: 0; 
+  background: white;
+}
+
+
+.title {
+  padding: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #00ff00;
+  font-size: 20px;
+}
+
+.linksLeft {
+  float: left;
+}
+
+.linksRight {
+  float: right;
+}

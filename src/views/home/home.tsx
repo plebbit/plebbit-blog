@@ -9,6 +9,7 @@ const Home = () => {
   return (
     <div className={styles.home}>
       <Header />
+      <div className={styles.hero} />
       {feed?.map((post) => (
         <FeedPost post={post} key={post.cid} />
       ))}

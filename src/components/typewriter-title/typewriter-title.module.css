@@ -1,0 +1,24 @@
+.typewriter {
+  display: inline-block;
+}
+
+.staticBlinker {
+  opacity: 1;
+  height: 15px;
+  border-left: 10px solid #00ff00;
+}
+
+.blinker {
+  opacity: 1;
+  height: 15px;
+  border-left: 10px solid #00ff00;
+  animation: blinker 0.9s steps(2, start) infinite;
+  animation-iteration-count: 2;
+  animation-fill-mode: forwards;
+}
+
+@keyframes blinker {
+  to { 
+    visibility: hidden; 
+  }
+}

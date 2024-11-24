@@ -1,0 +1,14 @@
+.home {
+  max-width: 1550px;
+  margin: 0 auto;
+}
+
+.hero {
+  background-image: url('/public/assets/hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 540px;
+  -webkit-mask-image: -webkit-gradient(linear, left top, left bottom, color-stop(80%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,0)));
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 80%, rgba(0,0,0,0) 100%);  
+}
