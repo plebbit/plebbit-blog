@@ -1,0 +1,24 @@
+.coinContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  animation: coinSpin 10s linear infinite;
+}
+
+@keyframes coinSpin {
+  from {
+    transform: translate(-50%, -50%) rotateY(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotateY(360deg);
+  }
+}
+
+.coin {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
