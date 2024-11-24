@@ -6,7 +6,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/post/:id" element={<PostPage />} />
+      <Route path="/c/:commentCid" element={<PostPage />} />
     </Routes>
   );
 };

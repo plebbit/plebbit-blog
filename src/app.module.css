@@ -1,0 +1,9 @@
+.app {
+  font: normal 10px verdana, arial, helvetica, sans-serif;
+  z-index: 1;
+  min-height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  min-height: 100vh;
+  color-scheme: var(--color-scheme, revert) !important;
+}
