@@ -1,12 +1,17 @@
-.postPage {
+.content {
+  max-width: 1390px;
+  margin: 0 auto;
+  margin-bottom: 40px;
+}
+
+.post {
   display: flex;
   justify-content: center;
   padding: 40px 20px;
 }
 
-.paper {
+.letter {
   width: 8.5in;
-  min-height: 11in;
   background-color: black;
   border: 1px solid #00ff00;
   padding: 40px;
@@ -16,13 +21,11 @@
 }
 
 @media (max-width: 930px) {
-  .paper {
+  .letter {
     flex-shrink: 1;
+    border: none;
+    padding: 0;
   }
-}
-
-.postContent {
-  padding-top: 15px;
 }
 
 
@@ -41,9 +44,13 @@
 
 .postPage .secondLine {
   margin-top: 15px;
-  font-size: 15px;
 }
 
+.secondLine {
+  font-family: monospace;
+  color: #ccc;
+  padding-bottom: 45px;
+}
 
 .separator:after {
   content: '•';
@@ -52,6 +59,86 @@
 }
 
 .readingTime {
-  font-size: 15px;
   float: right;
+}
+
+.replies {
+  display: block;
+  border-top: 1px solid #00ff00;
+  margin-top: 20px;
+  padding: 20px;
+  width: 9in;
+  min-height: 11in;
+  margin: 0 auto;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.replies h2 {
+  font-family: monospace;
+  font-size: 22px;
+  font-weight: normal;
+  padding-bottom: 20px;
+}
+
+@media (max-width: 930px) {
+  .comments {
+    float: right;
+  }
+
+  .replies {
+    width: 90%;
+  }
+}
+
+.backToTop {
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.backToFeed {
+  cursor: pointer;
+}
+
+.navigation {
+  font-family: monospace;
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  padding-left: 20px;
+
+}
+
+.navigation div {
+  display: inline-block;
+}
+
+.reply {
+  padding: 10px 0;
+}
+
+.author {
+  color: #e9e76cb3;
+}
+
+.reply .author {
+  font-family: monospace;
+  color: #e9e76cb3;
+}
+
+.reply .content {
+  color: #ccc;
+}
+
+.reply .author {
+  font-weight: bold;
+}
+
+.nestedReply {
+  margin-left: 25px;
+}
+
+.reply .timestamp, .reply .separator {
+  color: #00ff00a2;
 }

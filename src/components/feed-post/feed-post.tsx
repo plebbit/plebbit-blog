@@ -15,7 +15,7 @@ const FeedPost = ({post}: {post: Comment}) => {
             <span className={styles.separator} />
             <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(timestamp, 'en-US')}</span>
             <span className={styles.separator} />
-            <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'reply' : 'replies'}</span>
+            <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</span>
           </div>
         </div>
       </Link>
