@@ -1,0 +1,35 @@
+.markdown a {
+  color: var(--markdown-link);
+}
+
+.markdown ol {
+  padding-left: 40px;
+  white-space: normal;
+  padding-bottom: 5px;
+}
+
+.markdown ul {
+  padding-left: 40px;
+  white-space: normal;
+  padding-bottom: 5px;
+}
+
+.markdown blockquote {
+  padding: 0 8px;
+  margin-left: 5px;
+  border-left: 2px solid var(--markdown-blockquote-border);
+  color: var(--markdown-blockquote);
+  white-space: normal;
+}
+
+.markdown li {
+  white-space: normal;
+}
+
+.markdown h2 {
+  font-size: larger;
+}
+
+.markdown p {
+  margin-bottom: 5px;
+}
