@@ -6,8 +6,9 @@ import { Link } from 'react-router-dom';
 const FeedPost = ({post}: {post: Comment}) => {
   const { author, cid, replyCount, timestamp, title, } = post || {};
   return (
-    <div className={styles.feedPost}>
-        <Link to={`/c/${cid}`}>
+    <div className={styles.feedPostContainer}>
+      <Link to={`/c/${cid}`}>
+        <div className={styles.feedPost}>
           <div className={styles.title}>{title}</div>
           <div className={styles.secondLine}>
             <span className={styles.author}>by {author?.shortAddress || 'Anonymous'}</span>
@@ -16,6 +17,7 @@ const FeedPost = ({post}: {post: Comment}) => {
             <span className={styles.separator} />
             <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'reply' : 'replies'}</span>
           </div>
+        </div>
       </Link>
     </div>
   );
