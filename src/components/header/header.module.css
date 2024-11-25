@@ -9,7 +9,7 @@
   z-index: 10;
 }
 
-.header a {
+.linksRight a, .linksLeft a, .menuContent a {
   text-decoration: none;
   font-size: 15px;
   display: inline-block;
@@ -19,7 +19,7 @@
   color: #00ff00;
 }
 
-.header a:after {
+.linksRight a:after, .linksLeft a:after, .menuContent a:after {
   background: none repeat scroll 0 0 transparent;
   bottom: 0;
   content: "";
@@ -32,7 +32,7 @@
   width: 0;
 }
 
-a:hover:after { 
+.linksRight a:hover:after, .linksLeft a:hover:after, .menuContent a:hover:after { 
   width: 100%; 
   left: 0; 
 }
@@ -60,12 +60,12 @@ a:hover:after {
     transform: none;
   }
 
-  .header a:after {
+  .linksRight a:after, .linksLeft a:after, .menuContent a:after {
     left: 0;
     width: 0;
   }
 
-  .header a:hover:after {
+  .linksRight a:hover:after, .linksLeft a:hover:after, .menuContent a:hover:after {
     width: 100%;
     left: 0;
   }

@@ -37,3 +37,7 @@
 .separator, .comments, .timestamp {
   color: #00ff00a2;
 }
+
+.feedPost a {
+  text-decoration: none;
+}

@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import styles from './header.module.css';
 import TypewriterTitle from '../typewriter-title/typewriter-title';
 import useIsMobile from '../../hooks/use-is-mobile';
+import { Link } from 'react-router-dom';
 
 const HamburgerMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,9 +57,11 @@ const Header = () => {
           <a href="https://github.com/plebbit/Whitepaper/discussions/2" target="_blank" rel="noreferrer">Whitepaper</a>
         </span>
       )}
-      <span className={styles.title}>
-        <TypewriterTitle text="Plebbit Development Blog" />
-      </span>
+      <Link to="/">
+        <span className={styles.title}>
+          <TypewriterTitle text="Plebbit Development Blog" />
+        </span>
+      </Link>
       {!isMobile && (
         <span className={styles.linksRight}>
           <a href="https://github.com/plebbit" target="_blank" rel="noreferrer">Source Code</a>

@@ -1,6 +1,5 @@
 import { useFeed } from '@plebbit/plebbit-react-hooks';
 import styles from './home.module.css';
-import Header from '../../components/header';
 import FeedPost from '../../components/feed-post';
 import SpinningCoin from '../../components/spinning-coin';
 
@@ -9,7 +8,6 @@ const Home = () => {
 
   return (
     <div className={styles.home}>
-      <Header />
       <div className={styles.hero}>
         <SpinningCoin />
       </div>
