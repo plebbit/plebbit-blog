@@ -6,7 +6,7 @@
 }
 
 .feedPost:hover {
-  background-color: #00ff0010;
+  background-color: #00ff0020;
   cursor: pointer;
 }
 
@@ -18,7 +18,7 @@
 }
 
 .author {
-  color: #e9e76c8c;
+  color: #e9e76ca2;
   font-size: 15px;
   padding-top: 5px;
 }
@@ -35,5 +35,5 @@
 }
 
 .separator, .comments, .timestamp {
-  color: #00ff008c;
+  color: #00ff00a2;
 }

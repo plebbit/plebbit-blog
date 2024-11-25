@@ -1,10 +1,12 @@
 .header {
+  position: relative;
   align-items: center;
   height: 60px;
   border-bottom: 1px solid #00ff00;
   background: black;
   font-family: monospace;
   padding: 0 80px;
+  z-index: 10;
 }
 
 .header a {
@@ -45,10 +47,95 @@ a:hover:after {
   font-size: 20px;
 }
 
+@media (max-width: 740px) {
+  .title {
+    left: 0;
+    transform: none;
+  }
+}
+
+@media (max-width: 940px) {
+  .title {
+    left: 0;
+    transform: none;
+  }
+
+  .header a:after {
+    left: 0;
+    width: 0;
+  }
+
+  .header a:hover:after {
+    width: 100%;
+    left: 0;
+  }
+}
+
 .linksLeft {
   float: left;
 }
 
 .linksRight {
   float: right;
+}
+
+.hamburgerContainer {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+}
+
+.hamburgerButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.hamburgerButton span {
+  width: 30px;
+  height: 2px;
+  background: #00ff00;
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  transform-origin: 1px;
+}
+
+.hamburgerButton.open span:first-child {
+  transform: rotate(45deg);
+}
+
+.hamburgerButton.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburgerButton.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.menuContent {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background: black;
+  border: 1px solid #00ff00;
+  padding: 10px;
+  flex-direction: column;
+  min-width: 160px;
+}
+
+.menuContent a {
+  color: #00ff00;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 5px 0;
 }
