@@ -29,10 +29,8 @@ const Markdown = ({ content }: MarkdownProps) => {
               {children}
             </a>
           ),
-          img: ({ src }) => <span>{src}</span>,
-          video: ({ src }) => <span>{src}</span>,
-          iframe: ({ src }) => <span>{src}</span>,
-          source: ({ src }) => <span>{src}</span>,
+          img: ({ src }) => <img src={src} alt=''  />,
+          video: ({ src }) => <video src={src} controls autoPlay loop muted />,
         }}
       />
     </span>

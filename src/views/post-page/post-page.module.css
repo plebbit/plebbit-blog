@@ -21,6 +21,10 @@
   }
 }
 
+.postContent {
+  padding-top: 15px;
+}
+
 
 .postPage h1 {
   font-size: 45px;
@@ -45,4 +49,9 @@
   content: '•';
   font-size: 15px;
   padding: 0 10px;
+}
+
+.readingTime {
+  font-size: 15px;
+  float: right;
 }
