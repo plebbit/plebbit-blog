@@ -1,4 +1,6 @@
 .header {
+  max-width: 1390px;
+  margin: 0 auto;
   position: relative;
   align-items: center;
   height: 60px;
