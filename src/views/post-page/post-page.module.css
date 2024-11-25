@@ -1,0 +1,48 @@
+.postPage {
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+.paper {
+  width: 8.5in;
+  min-height: 11in;
+  background-color: black;
+  border: 1px solid #00ff00;
+  padding: 40px;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  flex-shrink: 0;
+}
+
+@media (max-width: 930px) {
+  .paper {
+    flex-shrink: 1;
+  }
+}
+
+
+.postPage h1 {
+  font-size: 45px;
+}
+
+.postPage h2 {
+  font-size: 25px;
+}
+
+.postPage p {
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.postPage .secondLine {
+  margin-top: 15px;
+  font-size: 15px;
+}
+
+
+.separator:after {
+  content: '•';
+  font-size: 15px;
+  padding: 0 10px;
+}

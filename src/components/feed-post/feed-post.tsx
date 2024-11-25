@@ -10,7 +10,7 @@ const FeedPost = ({post}: {post: Comment}) => {
         <Link to={`/c/${cid}`}>
           <div className={styles.title}>{title}</div>
           <div className={styles.secondLine}>
-            <span className={styles.author}>by {author?.shortAddress || 'unknown'}</span>
+            <span className={styles.author}>by {author?.shortAddress || 'Anonymous'}</span>
             <span className={styles.separator} />
             <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(timestamp, 'en-US')}</span>
             <span className={styles.separator} />

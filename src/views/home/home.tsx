@@ -11,7 +11,7 @@ const Home = () => {
       <div className={styles.hero}>
         <SpinningCoin />
       </div>
-      {Array(100).fill(null).map(() => (
+      {Array(3).fill(null).map(() => (
         feed?.map((post) => (
           <FeedPost post={post} key={post.cid} />
         ))
