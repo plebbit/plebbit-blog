@@ -50,7 +50,7 @@
 .secondLine {
   font-family: monospace;
   color: #ccc;
-  padding-bottom: 45px;
+  padding-bottom: 30px;
 }
 
 .separator:after {
@@ -163,9 +163,14 @@
   margin-right: 10px;
 }
 
+.media iframe {
+  border: none;
+}
+
 .media {
   display: inline-block;
   width: auto;
+  margin-bottom: 10px;
 }
 
 .media img {
@@ -230,7 +235,6 @@
 .content.expanded .mediaContainer {
   display: block;
   width: 100%;
-  margin-bottom: 5px;
 }
 
 .content.expanded .media img {
