@@ -13,7 +13,6 @@
 .letter {
   width: 8.5in;
   background-color: black;
-  border: 1px solid #00ff00;
   padding: 40px;
   color: white;
   font-family: 'Times New Roman', Times, serif;
@@ -104,14 +103,56 @@
 .navigation {
   font-family: monospace;
   font-size: 15px;
-  font-weight: bold;
   margin-bottom: 40px;
   padding-left: 20px;
-
 }
 
-.navigation div {
+.navigation span {
   display: inline-block;
+}
+
+.backToFeed span, .backToTop span {
+  position: relative;
+}
+
+.backToFeed span:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: auto;
+  position: absolute;
+  top: 25px;
+  right: 0;
+  background: #00ff00;
+  transition: transform 0.3s ease;
+  transform-origin: right;
+  transform: scaleX(0);
+  width: 100%;
+}
+
+.backToFeed span:hover:after { 
+  transform: scaleX(1);
+}
+
+.backToTop span:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  top: 25px;
+  position: absolute;
+  background: #00ff00;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.backToTop span:hover:after {
+  width: 100%; 
+  left: 0; 
 }
 
 .reply {
@@ -137,6 +178,7 @@
 
 .nestedReply {
   margin-left: 25px;
+  border-left: 2px dotted #e9e76cb3;
 }
 
 .reply .timestamp, .reply .separator {

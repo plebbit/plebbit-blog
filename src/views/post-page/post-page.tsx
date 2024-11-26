@@ -1,7 +1,7 @@
 import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
 import styles from './post-page.module.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import { formatLocalizedUTCTimestamp } from '../../lib/time-utils';
+import { formatLocalizedUTCTimestamp, getFormattedDate } from '../../lib/time-utils';
 import Markdown from '../../components/markdown';
 import useReplies from '../../hooks/use-replies';
 import useIsMobile from '../../hooks/use-is-mobile';
@@ -59,7 +59,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
     <div className={`${styles.reply} ${depth > 0 ? styles.nestedReply : ''}`}>
       <span className={styles.author}>u/{comment.author?.shortAddress || 'Anonymous'}</span>
       <span className={styles.separator} />
-      <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(comment.timestamp, 'en-US')}</span>
+      <span className={styles.timestamp}>{getFormattedDate(comment.timestamp, 'en-US')}</span>
       <span className={styles.content}>
         <Markdown content={comment.content} />
       </span>
@@ -93,12 +93,16 @@ const PostPage = () => {
         <Post comment={comment} />
       </div>
       <div className={styles.navigation}>
-        <div className={styles.backToTop} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          ^ back to top
+        <div className={styles.backToTop}>
+          ^{' '}
+          <span onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            back to top
+          </span>
         </div>
         <br />
-        <div className={styles.backToFeed} onClick={() => navigate('/')}>
-          <span>{`<`} back to all posts</span>
+        <div className={styles.backToFeed}>
+          {`< `}
+          <span onClick={() => navigate('/')}> back to all posts</span>
         </div>
       </div>
       <div className={styles.replies}>
