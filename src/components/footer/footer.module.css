@@ -1,0 +1,62 @@
+.footer {
+  background-color: #000;
+}
+
+.footerContent {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-family: monospace;
+  padding-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.footerLinks a {
+  color: #00ff00;
+  text-decoration: none;
+  position: relative;
+}
+
+.footerLinks a:hover {
+  color: #00ff00;
+}
+
+.footerLinks a:visited {
+  color: #00ff00;
+}
+
+
+.footerLinks a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 1px;
+  left: 50%;
+  top: 20px;
+  position: absolute;
+  background: #00ff00;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.footerLinks a:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+
+.footerText {
+  text-align: center;
+  margin-top: 15px;
+  color: #00ff00a2;
+  font-size: 12px;
+}
+
+.footerText p {
+  font-family: monospace;
+}

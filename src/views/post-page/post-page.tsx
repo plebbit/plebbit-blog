@@ -17,10 +17,6 @@ const Post = ({comment}: {comment: Comment}) => {
   const { author, content, timestamp, title, replyCount } = comment || {};
   const isMobile = useIsMobile();
 
-  let loremIpsum = 'Lorem ipsum dolor *sit amet*, **consectetur** adipiscing [elit](https://www.google.com).\n\nSed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\n&nbsp;\n\n Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n\n![image](https://github.com/plebbit/assets/blob/master/logo-circle-32x32.png?raw=true)Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit animExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim\n\n![video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\n![audio](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\n![iframe](https://www.youtube.com/watch?v=dQw4w9WgXcQ)\n\nhttps://www.youtube.com/watch?v=dQw4w9WgXcQ';
-
-  loremIpsum = loremIpsum.repeat(5);
-
   return (
     <div className={styles.letter}>
       <h1>{title || 'No Title'}</h1>
@@ -33,7 +29,7 @@ const Post = ({comment}: {comment: Comment}) => {
           </div>
           <div>
             <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(timestamp, 'en-US')}</span>
-            <span className={styles.readingTime}>{getReadingTime(content || loremIpsum)}</span>
+            <span className={styles.readingTime}>{getReadingTime(content)}</span>
           </div>
         </div>
       ) : (
@@ -43,11 +39,11 @@ const Post = ({comment}: {comment: Comment}) => {
           <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(timestamp, 'en-US')}</span>
           <span className={styles.separator} />
           <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</span>
-          <span className={styles.readingTime}>{getReadingTime(content || loremIpsum)}</span>
+          <span className={styles.readingTime}>{getReadingTime(content)}</span>
         </div>
       )}
       <div className={styles.postContent}>
-        <Markdown content={content || loremIpsum} />
+        <Markdown content={content || ''} />
       </div>
     </div>
   )
