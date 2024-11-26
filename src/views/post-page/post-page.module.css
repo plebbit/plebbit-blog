@@ -173,7 +173,7 @@
 }
 
 .reply .content {
-  color: #ccc;
+  color: white;
   font-family: Georgia, serif;
   line-height: 1.5;
 }
@@ -183,11 +183,18 @@
 }
 
 .nestedReply {
-  margin-left: 25px;
+  margin-left: 15px;
   border-left: 1px dotted #e9e76cb3;
   padding-left: 10px;
 }
 
 .reply .timestamp, .reply .separator {
   color: #00ff00a2;
+}
+
+@media (max-width: 930px) {
+  .replies {
+    padding: 0;
+    padding-top: 30px;
+  }
 }
