@@ -15,8 +15,13 @@
   background-color: black;
   padding: 40px;
   color: white;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Georgia, serif;
   flex-shrink: 0;
+  line-height: 1.5;
+}
+
+.letter h1 {
+  font-family: monospace;
 }
 
 @media (max-width: 930px) {
@@ -92,7 +97,7 @@
 
 .backToTop {
   cursor: pointer;
-  margin-bottom: 40px;
+  margin-bottom: 25px;
 }
 
 .backToFeed {
@@ -169,6 +174,8 @@
 
 .reply .content {
   color: #ccc;
+  font-family: Georgia, serif;
+  line-height: 1.5;
 }
 
 .reply .author {
@@ -177,7 +184,8 @@
 
 .nestedReply {
   margin-left: 25px;
-  border-left: 2px dotted #e9e76cb3;
+  border-left: 1px dotted #e9e76cb3;
+  padding-left: 10px;
 }
 
 .reply .timestamp, .reply .separator {

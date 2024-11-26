@@ -1,5 +1,10 @@
 .markdown a {
-  color: var(--markdown-link);
+  color: #00ff00a2;
+  text-decoration: none;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
 }
 
 .markdown ol {
@@ -17,8 +22,8 @@
 .markdown blockquote {
   padding: 0 8px;
   margin-left: 5px;
-  border-left: 2px solid var(--markdown-blockquote-border);
-  color: var(--markdown-blockquote);
+  border-left: 2px solid gray;
+  color: gray;
   white-space: normal;
 }
 
