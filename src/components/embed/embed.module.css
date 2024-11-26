@@ -1,0 +1,76 @@
+.audioEmbed {
+  height: 240px !important;
+  width: 700px !important;
+}
+
+@media (max-width: 640px) {
+  .audioEmbed {
+    max-height: 250px !important;
+    width: 100% !important;
+  }
+}
+
+.instagramEmbed {
+  height: 420px !important;
+  width: 360px !important;
+}
+
+@media (max-width: 640px) {
+  .instagramEmbed {
+    max-height: 420px !important;
+    width: 100% !important;
+  }
+}
+
+.redditEmbed {
+  width: 500px !important;
+  height: 520px !important;
+}
+
+@media (max-width: 640px) {
+  .redditEmbed {
+    width: 100% !important;
+    height: 520px !important;
+  }
+}
+
+.tiktokEmbed {
+  width: 400px !important;
+  height: 780px !important;
+}
+
+@media (max-width: 640px) {
+  .tiktokEmbed {
+    width: 100% !important;
+    height: 70vh !important;
+  }
+}
+
+.videoEmbed {
+  height: 450px !important;
+  width: 800px !important;
+}
+
+@media (max-width: 640px) {
+  .videoEmbed {
+    max-height: 250px !important;
+    width: 100% !important;
+  }
+}
+
+.xEmbed {
+  height: 580px !important;
+}
+
+@media (max-width: 640px) {
+  .xEmbed {
+    width: 100% !important;
+    height: 50vh !important;
+  }
+}
+
+.soundcloudEmbed {
+  height: 166px; /* default height of soundcloud embeds */
+  width: 100%;
+  max-width: 640px;
+}

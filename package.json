@@ -15,6 +15,8 @@
     "@types/node": "16.18.119",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
+    "ext-name": "5.0.0",
+    "memoizee": "0.4.15",
     "prettier": "3.3.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
