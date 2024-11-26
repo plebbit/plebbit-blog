@@ -75,17 +75,16 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
 };
 
 const PostPage = () => {
-  const commentCid = useParams().commentCid;
-  const comment = useComment({ commentCid: 'QmfSYtt2WSRGLETfKSsMoh9HQAc7YLGSZfoLMhg1M5JhYQ' });
-  const { subplebbitAddress, replyCount } = comment || {};
+  const comment = useComment({ commentCid: useParams().commentCid });
+  const { replyCount, subplebbitAddress } = comment || {};
   
   const replies = useReplies(comment);
 
   const navigate = useNavigate();
 
-  // if (subplebbitAddress !== 'blog.plebbit.eth') {
-  //   return <div>This is not the blog subplebbit</div>;
-  // }
+  if (subplebbitAddress !== 'blog.plebbit.eth') {
+    return <div>This is not the blog subplebbit</div>;
+  }
 
   return (
     <div className={styles.content}>
