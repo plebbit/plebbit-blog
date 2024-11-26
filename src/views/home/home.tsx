@@ -1,9 +1,30 @@
-import { useFeed } from '@plebbit/plebbit-react-hooks';
+import { useFeed, Comment } from '@plebbit/plebbit-react-hooks';
 import styles from './home.module.css';
-import FeedPost from '../../components/feed-post';
 import SpinningCoin from '../../components/spinning-coin';
 import useFeedStateString from '../../hooks/use-feed-state-string';
 import LoadingEllipsis from '../../components/loading-ellipsis';
+import { Link } from 'react-router-dom';
+import { formatLocalizedUTCTimestamp } from '../../lib/time-utils';
+
+const BlogPost = ({post}: {post: Comment}) => {
+  const { author, cid, replyCount, timestamp, title, } = post || {};
+  return (
+    <div className={styles.blogPostContainer}>
+      <Link to={`/c/${cid}`}>
+        <div className={styles.blogPost}>
+          <div className={styles.title}>{title}</div>
+          <div className={styles.secondLine}>
+            <span className={styles.author}>by {author?.shortAddress || 'Anonymous'}</span>
+            <span className={styles.separator} />
+            <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(timestamp, 'en-US')}</span>
+            <span className={styles.separator} />
+            <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</span>
+          </div>
+        </div>
+      </Link>
+    </div>
+  );
+};
 
 const Home = () => {
   const { feed } = useFeed({subplebbitAddresses: ['blog.plebbit.eth']});
@@ -16,7 +37,7 @@ const Home = () => {
       </div>
       {feed.length === 0 && <div className={styles.stateString}>{stateString}</div>}
       {feed?.map((post) => (
-        <FeedPost post={post} key={post.cid} />
+        <BlogPost post={post} key={post.cid} />
       ))}
     </div>
   );
