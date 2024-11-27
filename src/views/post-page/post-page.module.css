@@ -185,6 +185,10 @@
   padding: 10px 0;
 }
 
+.reply .stateString {
+  color: gray;
+}
+
 .author {
   color: #e9e76cb3;
 }

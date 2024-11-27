@@ -3,10 +3,12 @@ import Home from './views/home';
 import PostPage from './views/post-page';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
+import ChallengeModal from './components/challenge-modal/challenge-modal';
 
 const App = () => {
   const globalLayout = (
     <>
+      <ChallengeModal />
       <Header />
       <main>
         <Outlet />

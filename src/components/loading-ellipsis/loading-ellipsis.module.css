@@ -1,7 +1,7 @@
 .ellipsis:after {
   overflow: hidden;
   display: inline-block;
-  vertical-align: text-bottom;
+  vertical-align: bottom;
   -webkit-animation: ellipsis steps(4,end) 1500ms infinite;      
   animation: ellipsis steps(4,end) 1500ms infinite;
   content: "\2026"; /* ascii code for the ellipsis character */

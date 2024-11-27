@@ -11,6 +11,8 @@ import Markdown from '../../components/markdown';
 import Thumbnail from '../../components/thumbnail';
 import Embed from '../../components/embed';
 import ReplyForm from '../../components/reply-form';
+import LoadingEllipsis from '../../components/loading-ellipsis';
+import useStateString from '../../hooks/use-state-string';
 
 const getReadingTime = (text: string) => {
   const wordsPerMinute = 225;
@@ -84,10 +86,14 @@ const Post = ({comment}: {comment: Comment}) => {
 };
 
 const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
+  const { state } = comment || {};
   const replies = useReplies(comment);
   const [expanded, setExpanded] = useState(false);
   const toggleExpanded = () => setExpanded(!expanded);
   const commentMediaInfo = useCommentMediaInfo(comment);
+
+  const stateString = useStateString(comment);
+  const loadingString = stateString && <span className={styles.stateString}>{stateString !== 'Failed' ? <LoadingEllipsis string={stateString} /> : ''}</span>;
 
   return (
     <div className={`${styles.reply} ${depth > 0 ? styles.nestedReply : ''}`}>
@@ -107,6 +113,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
         )}
         <span className={styles.textContent}> 
           <Markdown content={comment.content || ''} />
+          {state === 'pending' && loadingString}
         </span>
       </span>
       {replies.map((reply) => (

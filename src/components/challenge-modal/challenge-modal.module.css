@@ -1,0 +1,93 @@
+.modal {
+  z-index: 7;
+  outline: unset;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container {
+  width: 400px;
+  color: #00ff00;
+  font-family: monospace;
+  font-size: 14px;
+  background-color: black;
+  border: 1px solid #00ff00;
+  padding: 20px;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  font-size: large;
+}
+
+.subTitle {
+  font-size: 13px;
+  padding-top: 5px;
+}
+
+.title, .subTitle {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.challengeMediaWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.challengeMedia {
+  width: 100%;
+  max-height: 50%;
+}
+
+.challengeInput {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+  background-color: black;
+  color: white;
+  font-family: Georgia, serif;
+}
+
+.challengeFooter {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.buttons {
+  position: absolute;
+  left: 20px;
+}
+
+.challengeFooter button {
+  margin: 5px 5px 0 0;
+  -webkit-appearance: button;
+  appearance: button;
+  cursor: pointer;
+  padding: 2px 6px 3px;
+  text-transform: lowercase;
+}
+
+.buttons button {
+  display: inline-block;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+  .challengeFooter button {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    max-width: 400px;
+    width: 85vw;
+  }
+}
