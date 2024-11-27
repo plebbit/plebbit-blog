@@ -10,6 +10,7 @@ import useReplies from '../../hooks/use-replies';
 import Markdown from '../../components/markdown';
 import Thumbnail from '../../components/thumbnail';
 import Embed from '../../components/embed';
+import ReplyForm from '../../components/reply-form';
 
 const getReadingTime = (text: string) => {
   const wordsPerMinute = 225;
@@ -104,7 +105,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
             }
           </span>
         )}
-        <span className={styles.textContent}>
+        <span className={styles.textContent}> 
           <Markdown content={comment.content || ''} />
         </span>
       </span>
@@ -122,7 +123,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
 const PostPage = () => {
   const navigate = useNavigate();
 
-  const comment = useComment({ commentCid: 'QmXb2bbW7hxn1to3MSoq7kg5Gsm6cfimxhwK2zkwksiuMJ' });
+  const comment = useComment({ commentCid: 'QmYohqeWGMbWGjoDJEYPpNatwCuvUEFPEAJ4K2eVfScccA' });
   const { replyCount } = comment || {};
   
   const replies = useReplies(comment);
@@ -148,8 +149,13 @@ const PostPage = () => {
       <div className={styles.replies}>
         <h2>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</h2>
         <div className={styles.replyForm}>
-          <textarea />
-          <button>reply</button>
+          <ReplyForm 
+            cid={comment?.cid || ''} 
+            hideReplyForm={() => {}}
+            isReplyingToReply={false}
+            postCid={comment?.postCid || ''} 
+            subplebbitAddress={comment?.subplebbitAddress || ''} 
+          />
         </div>
         {replies.map((reply) => (
           <Reply comment={reply} key={reply.cid} depth={0} />

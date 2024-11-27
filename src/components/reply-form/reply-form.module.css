@@ -1,0 +1,154 @@
+.mdContainer {
+  margin: 5px 0 10px 0px;
+  font-size: 16px;
+  padding: 0 1px;
+  max-width: 500px;
+  unicode-bidi: isolate;
+}
+
+.infobar {
+  width: 100%;
+  box-sizing: border-box;
+  border-style: solid;
+  border-width: 1px;
+  padding: 6px 10px;
+  color: #00ff00;
+  word-wrap: break-word;
+  font-size: 14px;
+  font-family: monospace;
+}
+
+.md {
+  margin-bottom: 5px;
+  font-weight: 400;
+  width: 100%;
+  max-width: 60em;
+}
+
+.url {
+  color: white;
+  background-color: black;
+  font-family: Georgia, serif;
+}
+
+.spoiler {
+  padding-left: 5px;
+}
+
+.spoiler label:hover {
+  cursor: pointer;
+}
+
+.mdContainerReplying {
+  margin-left: 25px;
+}
+
+.urlHidden, .spoilerHidden {
+  display: none;
+}
+
+.urlVisible, .spoilerVisible {
+  display: inline-block;
+}
+
+.textarea {
+  width: 100%;
+  height: 100px;
+  background-color: black;
+  color: white;
+  font-family: Georgia, serif;
+  line-height: 1.42em;
+  font-size: 16px;
+  word-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.save, .cancel {
+  margin: 5px 5px 0 0;
+  -webkit-appearance: button;
+  appearance: button;
+  cursor: pointer;
+  padding: 2px 6px 3px;
+  text-transform: lowercase;
+}
+
+.optionsButton {
+  font-size: 13px;
+  float: right;
+  margin-top: 5px;
+  margin-left: 10px;
+  margin-right: 5px;
+  color: #00ff00;
+  cursor: pointer;
+  text-transform: lowercase;
+  font-family: monospace;
+}
+
+.options {
+  font-size: 13px;
+  padding-bottom: 2px;
+  padding-top: 2px;
+  color: #00ff00;
+  font-family: monospace;
+}
+
+.markdownHelp {
+  display: block;
+  padding: 4px 4px 0px 4px;
+  margin-top: 5px;
+  border-top: 1px dotted #00ff00;
+}
+
+.markdownHelp table {
+  width: 100%;
+  margin-top: 5px;
+  font-weight: 400;
+  color: white;
+  border-collapse: collapse;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-color: gray;
+  font-size: 16px;
+}
+
+.tableFirstRow {
+  color: #00ff00;
+  text-align: center;
+  text-transform: lowercase;
+
+  font-size: 16px;
+  font-family: monospace;
+}
+
+.markdownHelp tr {
+  margin: 0;
+}
+
+.markdownHelp td {
+  padding: 5px;
+  width: 50%;
+  border: 1px solid var(--gray);
+  text-align: left;
+  padding: 4px 9px;
+}
+
+@media (max-width: 640px) {
+  .mdContainer {
+    max-width: calc(100vw - 31px);
+  }
+}
+
+.editReason {
+  font-size: 16px;
+  float: left;
+}
+
+.editReason input {
+  width: 60%;
+}
+
+.editSaveButtons {
+  width: 100%;
+  display: inline-block;
+}
