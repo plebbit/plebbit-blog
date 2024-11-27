@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
 import { CommentMediaInfo } from '../../lib/media-utils';
@@ -122,14 +122,10 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
 const PostPage = () => {
   const navigate = useNavigate();
 
-  const comment = useComment({ commentCid: useParams().commentCid });
-  const { replyCount, subplebbitAddress } = comment || {};
+  const comment = useComment({ commentCid: 'QmXb2bbW7hxn1to3MSoq7kg5Gsm6cfimxhwK2zkwksiuMJ' });
+  const { replyCount } = comment || {};
   
   const replies = useReplies(comment);
-
-  if (subplebbitAddress !== 'blog.plebbit.eth') {
-    return <div>This is not the blog subplebbit</div>;
-  }
 
   return (
     <div className={styles.postPage}>
