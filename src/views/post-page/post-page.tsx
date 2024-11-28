@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
@@ -149,6 +149,10 @@ const PostPage = () => {
   const { replyCount } = comment || {};
   
   const replies = useReplies(comment);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className={styles.postPage}>
