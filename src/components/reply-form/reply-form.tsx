@@ -124,9 +124,14 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
   useEffect(() => {
     if (typeof replyIndex === 'number') {
       resetContent();
+
+      if (hideReplyForm) {
+        hideReplyForm();
+      }
+
       resetFields();
     }
-  }, [replyIndex, resetContent]);
+  }, [replyIndex, resetContent, hideReplyForm]);
 
   return (
     <div className={mdContainerClass}>

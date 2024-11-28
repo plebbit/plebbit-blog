@@ -86,6 +86,7 @@ const Post = ({comment}: {comment: Comment}) => {
 };
 
 const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
+  const [isReplying, setIsReplying] = useState(false);
   const { state } = comment || {};
   const replies = useReplies(comment);
   const [expanded, setExpanded] = useState(false);
@@ -113,7 +114,22 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
         )}
         <span className={styles.textContent}> 
           <Markdown content={comment.content || ''} />
-          {state === 'pending' && loadingString}
+          {state === 'pending' && <div>{loadingString}</div>}
+        <div className={styles.replyButton}>
+          <button onClick={() => setIsReplying(true)}>reply</button>
+        </div>
+        {isReplying && (
+          <div className={styles.replyForm}>
+            <br />
+            <ReplyForm
+              cid={comment.cid}
+              hideReplyForm={() => setIsReplying(false)}
+              isReplyingToReply={true}
+              postCid={comment.postCid}
+              subplebbitAddress={comment.subplebbitAddress}
+              />
+          </div>
+        )}
         </span>
       </span>
       {replies.map((reply) => (
@@ -163,8 +179,12 @@ const PostPage = () => {
             subplebbitAddress={comment?.subplebbitAddress || ''} 
           />
         </div>
-        {replies.map((reply) => (
-          <Reply comment={reply} key={reply.cid} depth={0} />
+        {replies.map((reply, index) => (
+          <Reply 
+            comment={reply} 
+            key={`${reply.cid || 'pending'}-${index}`}
+            depth={0} 
+          />
         ))}
       </div>
     </div>
