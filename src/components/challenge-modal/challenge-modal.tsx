@@ -43,7 +43,7 @@ const Challenge = ({ challenge, closeModal }: ChallengeProps) => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.title}>challenge from blog subplebbit</div>
+      <div className={styles.title}>challenge from p/{publication?.subplebbitAddress}</div>
       <div className={styles.challengeMediaWrapper}>
         {isTextChallenge && <div className={styles.challengeMedia}>{challenges[currentChallengeIndex]?.challenge}</div>}
         {isImageChallenge && <img alt='loading' className={styles.challengeMedia} src={`data:image/png;base64,${challenges[currentChallengeIndex]?.challenge}`} />}
