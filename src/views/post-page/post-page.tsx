@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
 import { CommentMediaInfo } from '../../lib/media-utils';
@@ -129,8 +129,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
 
 const PostPage = () => {
   const navigate = useNavigate();
-
-  const comment = useComment({ commentCid: 'QmYohqeWGMbWGjoDJEYPpNatwCuvUEFPEAJ4K2eVfScccA' });
+  const comment = useComment({ commentCid: useParams().commentCid });
   const { replyCount } = comment || {};
   
   const replies = useReplies(comment);

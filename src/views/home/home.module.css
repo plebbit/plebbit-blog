@@ -22,7 +22,7 @@
 }
 
 .blogPost {
-  font-family: monospace;
+  font-family: var(--font-family);
   padding: 40px;
   padding-left: 15vw;
   border-top: 1px solid #00ff0050;
@@ -38,9 +38,9 @@
 }
 
 .title {
-  font-family: monospace;
+  font-family: var(--font-family);
   font-weight: bold;
-  color: #00ff00;
+  color: var(--green);
   font-size: 25px;
 }
 
@@ -62,7 +62,7 @@
 }
 
 .separator, .comments, .timestamp {
-  color: #00ff00a2;
+  color: var(--green-dark);
 }
 
 .blogPostContainer a {

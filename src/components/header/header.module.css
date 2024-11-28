@@ -4,9 +4,9 @@
   position: relative;
   align-items: center;
   height: 60px;
-  border-bottom: 1px solid #00ff00;
-  background: black;
-  font-family: monospace;
+  border-bottom: 1px solid var(--green);
+  background: var(--black);
+  font-family: var(--font-family);
   padding: 0 80px;
   z-index: 10;
 }
@@ -18,7 +18,7 @@
   margin: 20px;
   padding: 0 5px 10px 5px;
   position: relative;
-  color: #00ff00;
+  color: var(--green);
 }
 
 .linksRight a:after, .linksLeft a:after, .menuContent a:after {
@@ -29,7 +29,7 @@
   height: 1px;
   left: 50%;
   position: absolute;
-  background: #00ff00;
+  background: var(--green);
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
@@ -45,7 +45,7 @@
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  color: #00ff00;
+  color: var(--green);
   font-size: 20px;
 }
 
@@ -105,7 +105,7 @@
 .hamburgerButton span {
   width: 30px;
   height: 2px;
-  background: #00ff00;
+  background: var(--green);
   border-radius: 10px;
   transition: all 0.3s linear;
   position: relative;
@@ -129,14 +129,14 @@
   top: 40px;
   right: 0;
   background: black;
-  border: 1px solid #00ff00;
+  border: 1px solid var(--green);
   padding: 10px;
   flex-direction: column;
   min-width: 160px;
 }
 
 .menuContent a {
-  color: #00ff00;
+  color: var(--green);
   text-decoration: none;
   font-size: 16px;
   padding: 5px 0;

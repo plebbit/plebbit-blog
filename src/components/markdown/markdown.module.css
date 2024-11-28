@@ -1,5 +1,5 @@
 .markdown a {
-  color: #00ff00a2;
+  color: var(--green);
   text-decoration: none;
 }
 
@@ -23,7 +23,7 @@
   padding: 0 8px;
   margin-left: 5px;
   border-left: 2px solid gray;
-  color: gray;
+  color: var(--gray);
   margin-bottom: 10px;
   white-space: normal;
 }
@@ -37,5 +37,9 @@
 }
 
 .markdown p {
-  margin-bottom: 5px;
+  margin: 5px 0;
+}
+
+.markdown img {
+  max-width: 100%;
 }

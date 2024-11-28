@@ -1,7 +1,9 @@
-:root .light {
-  --color-scheme: light;
-}
-
-:root .dark {
-  --color-scheme: dark;
+:root {
+  --black: #000;
+  --font-family: 'Roboto Mono', monospace;
+  --green: #00ff00;
+  --green-dark: #00ff00a2;
+  --gold-dark: #e9e76cb3;
+  --gray: #808080;
+  --white: #fff;
 }

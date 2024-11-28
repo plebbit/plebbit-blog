@@ -9,11 +9,11 @@
 
 .container {
   width: 400px;
-  color: #00ff00;
-  font-family: monospace;
+  color: var(--green);
+  font-family: var(--font-family);
   font-size: 14px;
-  background-color: black;
-  border: 1px solid #00ff00;
+  background-color: var(--black);
+  border: 1px solid var(--green);
   padding: 20px;
   position: fixed;
   transform: translate(-50%, -50%);
@@ -47,8 +47,8 @@
   padding: 10px;
   font-size: 16px;
   box-sizing: border-box;
-  background-color: black;
-  color: white;
+  background-color: var(--black);
+  color: var(--white);
   font-family: Georgia, serif;
 }
 

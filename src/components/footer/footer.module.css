@@ -11,23 +11,23 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  font-family: monospace;
+  font-family: var(--font-family);
   padding-bottom: 30px;
   flex-wrap: wrap;
 }
 
 .footerLinks a {
-  color: #00ff00;
+  color: var(--green);
   text-decoration: none;
   position: relative;
 }
 
 .footerLinks a:hover {
-  color: #00ff00;
+  color: var(--green);
 }
 
 .footerLinks a:visited {
-  color: #00ff00;
+  color: var(--green);
 }
 
 
@@ -40,7 +40,7 @@
   left: 50%;
   top: 20px;
   position: absolute;
-  background: #00ff00;
+  background: var(--green);
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
@@ -53,10 +53,10 @@
 .footerText {
   text-align: center;
   margin-top: 15px;
-  color: #00ff00a2;
+  color: var(--green-dark);
   font-size: 12px;
 }
 
 .footerText p {
-  font-family: monospace;
+  font-family: var(--font-family);
 }
