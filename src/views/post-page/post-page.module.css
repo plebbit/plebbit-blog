@@ -30,7 +30,7 @@
   font-family: var(--font-family);
 }
 
-@media (max-width: 930px) {
+@media (max-width: 1111px) {
   .post {
     flex-shrink: 1;
     border: none;
@@ -96,7 +96,7 @@
   padding-bottom: 20px;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 1111px) {
   .comments {
     float: right;
   }
@@ -246,7 +246,7 @@
   color: #808080;
 }
 
-@media (max-width: 930px) {
+@media (max-width: 1111px) {
   .replies {
     padding: 0;
     padding-top: 30px;
