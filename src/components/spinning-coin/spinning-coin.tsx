@@ -8,15 +8,15 @@ const SpinningCoin = () => {
           cx="153.07" 
           cy="153.07" 
           r="151.07" 
-          fill="var(--spinning-coin-background)"
-          stroke="var(--spinning-coin-stroke)"
+          fill="var(--background-color)"
+          stroke="var(--color-2)"
           strokeWidth="4"
         />
         <g transform="translate(-229.37 -308.69)">
-          <circle cx="334.04" cy="399.32" r="14.563" fill="var(--spinning-coin-stroke)"/>
-          <circle cx="476.01" cy="400.8" r="14.563" fill="var(--spinning-coin-stroke)"/>
-          <path d="m427.18 415.83 26.214 97.087-80.583-1.9418" fill="none" stroke="var(--spinning-coin-stroke)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="13.5"/>
-          <path d="m359.22 557.57 100.97 3.8835" fill="none" stroke="var(--spinning-coin-stroke)" strokeLinecap="round" strokeWidth="13.5"/>
+          <circle cx="334.04" cy="399.32" r="14.563" fill="var(--color-2)"/>
+          <circle cx="476.01" cy="400.8" r="14.563" fill="var(--color-2)"/>
+          <path d="m427.18 415.83 26.214 97.087-80.583-1.9418" fill="none" stroke="var(--color-2)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="13.5"/>
+          <path d="m359.22 557.57 100.97 3.8835" fill="none" stroke="var(--color-2)" strokeLinecap="round" strokeWidth="13.5"/>
         </g>
       </svg>
     </div>

@@ -17,18 +17,18 @@
 }
 
 .footerLinks a {
-  color: var(--color-primary);
+  color: var(--color-1);
   text-decoration: none;
   position: relative;
   font-size: 14px;
 }
 
 .footerLinks a:hover {
-  color: var(--color-primary);
+  color: var(--color-1);
 }
 
 .footerLinks a:visited {
-  color: var(--color-primary);
+  color: var(--color-1);
 }
 
 
@@ -41,7 +41,7 @@
   left: 50%;
   top: 20px;
   position: absolute;
-  background: var(--color-primary);
+  background: var(--color-1);
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
@@ -54,7 +54,8 @@
 .footerText {
   text-align: center;
   margin-top: 15px;
-  color: var(--color-primary-dark);
+  color: var(--color-1-secondary);
+  opacity: 0.8;
   font-size: 12px;
 }
 

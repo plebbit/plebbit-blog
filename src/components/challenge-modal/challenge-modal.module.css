@@ -9,11 +9,11 @@
 
 .container {
   width: 400px;
-  color: var(--color-primary);
+  color: var(--color-1);
   font-family: var(--font-family);
   font-size: 14px;
   background-color: var(--background-color);
-  border: 1px solid var(--color-primary);
+  border: 1px solid var(--color-1);
   padding: 20px;
   position: fixed;
   transform: translate(-50%, -50%);

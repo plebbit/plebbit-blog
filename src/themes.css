@@ -1,25 +1,25 @@
 :root .dark {
   --background-color: #000;
   --font-family: 'Roboto Mono', monospace;
-  --color-primary: #00ff00;
-  --color-primary-dark: #03ae03;
-  --color-secondary-dark: #a2a037;
+  --color-1: #00ff00;
+  --color-1-opaque: #03ae03;
+  --color-1-secondary: #03ae03;
+  --color-2: #e9e76c;
+  --color-2-secondary: #a2a037;
   --color-info: #808080;
   --color-post: #fff;
   --hero-image: url('/public/assets/hero-dark.png');
-  --spinning-coin-background: #000;
-  --spinning-coin-stroke: #e9e76c;
 }
 
 :root .light {
-  --background-color: white;
+  --background-color: #fff;
   --font-family: 'Roboto Mono', monospace;
-  --color-primary: black;
-  --color-primary-dark: darkgray;
-  --color-secondary-dark: #a2a037;
+  --color-1: #000;
+  --color-1-opaque: #a9a9a9;
+  --color-1-secondary: #a9a9a9;
+  --color-2: #343434;
+  --color-2-secondary: #343434;
   --color-info: #808080;
   --color-post: #000;
   --hero-image: url('/public/assets/hero-light.png');
-  --spinning-coin-background: #fff;
-  --spinning-coin-stroke: #343434;
 }

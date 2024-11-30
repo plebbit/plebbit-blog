@@ -13,6 +13,7 @@ import Embed from '../../components/embed';
 import ReplyForm from '../../components/reply-form';
 import LoadingEllipsis from '../../components/loading-ellipsis';
 import useStateString from '../../hooks/use-state-string';
+import useWindowWidth from '../../hooks/use-window-width';
 
 const getReadingTime = (text: string) => {
   const wordsPerMinute = 225;
@@ -46,6 +47,7 @@ const Media = ({commentMediaInfo, expanded}: {commentMediaInfo: CommentMediaInfo
 const Post = ({comment}: {comment: Comment}) => {
   const { author, content, timestamp, title, replyCount } = comment || {};
   const isMobile = useIsMobile();
+  const windowWidth = useWindowWidth();
   const commentMediaInfo = useCommentMediaInfo(comment);
 
   return (
@@ -56,6 +58,7 @@ const Post = ({comment}: {comment: Comment}) => {
         <div className={styles.secondLine}> 
           <div>
             <span className={styles.author}>by u/{author?.shortAddress || 'Anonymous'}</span>
+            {windowWidth > 930 && <span className={styles.separator} />}
             <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</span>
           </div>
           <div>
@@ -79,7 +82,11 @@ const Post = ({comment}: {comment: Comment}) => {
         </span>
       )}
       <div className={styles.postContent}>
-        <Markdown content={content || ''} />
+        {content ? (
+          <Markdown content={content || ''} />
+        ) : (
+          <div className={styles.noContent}>[No Content]</div>
+        )}
       </div>
     </div>
   )
