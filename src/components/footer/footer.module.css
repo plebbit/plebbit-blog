@@ -1,5 +1,5 @@
 .footer {
-  background-color: #000;
+  background-color: var(--background-color);
 }
 
 .footerContent {
@@ -17,18 +17,18 @@
 }
 
 .footerLinks a {
-  color: var(--green);
+  color: var(--color-primary);
   text-decoration: none;
   position: relative;
   font-size: 14px;
 }
 
 .footerLinks a:hover {
-  color: var(--green);
+  color: var(--color-primary);
 }
 
 .footerLinks a:visited {
-  color: var(--green);
+  color: var(--color-primary);
 }
 
 
@@ -41,7 +41,7 @@
   left: 50%;
   top: 20px;
   position: absolute;
-  background: var(--green);
+  background: var(--color-primary);
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
@@ -54,7 +54,7 @@
 .footerText {
   text-align: center;
   margin-top: 15px;
-  color: var(--green-dark);
+  color: var(--color-primary-dark);
   font-size: 12px;
 }
 

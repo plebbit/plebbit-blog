@@ -5,13 +5,13 @@
 .staticBlinker {
   opacity: 1;
   height: 15px;
-  border-left: 10px solid #00ff00;
+  border-left: 10px solid var(--color-primary);
 }
 
 .blinker {
   opacity: 1;
   height: 15px;
-  border-left: 10px solid #00ff00;
+  border-left: 10px solid var(--color-primary);
   animation: blinker 0.9s steps(2, start) infinite;
   animation-iteration-count: 3;
   animation-fill-mode: forwards;

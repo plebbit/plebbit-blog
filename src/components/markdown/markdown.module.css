@@ -1,5 +1,5 @@
 .markdown a {
-  color: var(--green);
+  color: var(--color-primary);
   text-decoration: none;
 }
 
@@ -23,7 +23,7 @@
   padding: 0 8px;
   margin-left: 5px;
   border-left: 2px solid gray;
-  color: var(--gray);
+  color: var(--color-info);
   margin-bottom: 10px;
   white-space: normal;
 }

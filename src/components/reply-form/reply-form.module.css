@@ -12,7 +12,7 @@
   border-style: solid;
   border-width: 1px;
   padding: 6px 10px;
-  color: var(--green);
+  color: var(--color-primary);
   word-wrap: break-word;
   font-size: 14px;
   font-family: var(--font-family);
@@ -26,8 +26,8 @@
 }
 
 .url {
-  color: var(--white);
-  background-color: var(--black);
+  color: var(--color-post);
+  background-color: var(--background-color);
   font-family: var(--font-family);
 }
 
@@ -54,8 +54,8 @@
 .textarea {
   width: 100%;
   height: 100px;
-  background-color: var(--black);
-  color: var(--white);
+  background-color: var(--background-color);
+  color: var(--color-post);
   font-family: var(--font-family);
   line-height: 1.42em;
   font-size: 16px;
@@ -78,7 +78,7 @@
   margin-top: 5px;
   margin-left: 10px;
   margin-right: 5px;
-  color: var(--green);
+  color: var(--color-primary);
   cursor: pointer;
   text-transform: lowercase;
   font-family: var(--font-family);
@@ -88,7 +88,7 @@
   font-size: 13px;
   padding-bottom: 2px;
   padding-top: 2px;
-  color: var(--green);
+  color: var(--color-primary);
   font-family: var(--font-family);
 }
 
@@ -103,18 +103,18 @@
   width: 100%;
   margin-top: 5px;
   font-weight: 400;
-  color: var(--white);
+  color: var(--color-post);
   border-collapse: collapse;
   box-sizing: border-box;
   text-indent: initial;
   border-spacing: 2px;
-  border-color: var(--gray);
+  border-color: var(--color-info);
   font-size: 16px;
   font-family: var(--font-family);
 }
 
 .tableFirstRow {
-  color: var(--green);
+  color: var(--color-primary);
   text-align: center;
   text-transform: lowercase;
 
@@ -129,7 +129,7 @@
 .markdownHelp td {
   padding: 5px;
   width: 50%;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--color-info);
   text-align: left;
   padding: 4px 9px;
 }

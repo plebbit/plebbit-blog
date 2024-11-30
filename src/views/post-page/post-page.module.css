@@ -12,9 +12,9 @@
 .post {
   width: 8.5in;
   margin: 0 auto;
-  background-color: var(--black);
+  background-color: var(--background-color);
   padding: 40px;
-  color: var(--white);
+  color: var(--color-post);
   font-family: var(--font-family);
   flex-shrink: 0;
   line-height: 1.5;
@@ -56,7 +56,7 @@
 
 .secondLine {
   font-family: var(--font-family);
-  color: var(--gray);
+  color: var(--color-info);
   padding-bottom: 30px;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .replies {
-  border-top: 1px solid var(--green);
+  border-top: 1px solid var(--color-primary);
   margin-top: 20px;
   padding: 20px;
   width: 9in;
@@ -132,7 +132,7 @@
   position: absolute;
   top: 25px;
   right: 0;
-  background: var(--green);
+  background: var(--color-primary);
   transition: transform 0.3s ease;
   transform-origin: right;
   transform: scaleX(0);
@@ -152,7 +152,7 @@
   left: 50%;
   top: 25px;
   position: absolute;
-  background: var(--green);
+  background: var(--color-primary);
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
 }
@@ -194,7 +194,7 @@
 }
 
 .reply .stateString {
-  color: var(--gray);
+  color: var(--color-info);
 }
 
 .author {
@@ -204,12 +204,12 @@
 
 .reply .author {
   font-family: var(--font-family);
-  color: var(--gold-dark);
+  color: var(--color-secondary-dark);
 }
 
 .reply .content {
   display: block;
-  color: var(--white);
+  color: var(--color-post);
   font-family: var(--font-family);
   line-height: 1.5;
   unicode-bidi: isolate;
@@ -231,7 +231,7 @@
   left: 0;
   top: 15px;
   bottom: 0;
-  border-left: 1px dotted var(--gold-dark);
+  border-left: 1px dotted var(--color-secondary-dark);
 }
 
 .reply .timestamp, .reply .separator {
@@ -272,7 +272,7 @@
 }
 
 .replyButton button {
-  color: var(--gray);
+  color: var(--color-info);
   background: none;
   border: none;
   padding: 0;

@@ -6,7 +6,7 @@
 
 .hero {
   position: relative;
-  background-image: url('/public/assets/hero.png');
+  background-image: var(--hero-image);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -40,7 +40,7 @@
 .title {
   font-family: var(--font-family);
   font-weight: bold;
-  color: var(--green);
+  color: var(--color-primary);
   font-size: 25px;
   text-transform: capitalize;
 }
@@ -63,7 +63,7 @@
 }
 
 .separator, .comments, .timestamp {
-  color: var(--green-dark);
+  color: var(--color-primary-dark);
 }
 
 .blogPostContainer a {

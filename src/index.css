@@ -5,8 +5,8 @@ html, body {
 }
 
 body {
-  background-color: var(--black);
-  color: var(--green);
+  background-color: var(--background-color);
+  color: var(--color-primary);
 }
 
 body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td, iframe {
