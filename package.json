@@ -7,7 +7,7 @@
   "license": "GPL-2.0-only",
   "private": true,
   "dependencies": {
-    "@floating-ui/react": "^0.26.28",
+    "@floating-ui/react": "0.26.28",
     "@plebbit/plebbit-react-hooks": "https://github.com/plebbit/plebbit-react-hooks.git#be1a1f317db7c4096f0d1c79452e13452bf9df78",
     "@testing-library/jest-dom": "5.17.0",
     "@testing-library/react": "13.4.0",
