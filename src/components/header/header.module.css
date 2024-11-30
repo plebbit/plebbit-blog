@@ -171,7 +171,7 @@
   width: 100%;
   height: 100%;
   border-radius: 14px;
-  border: 2px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
   background-color: transparent;
   transition: background-color 0.2s;
   overflow: hidden;
@@ -179,8 +179,8 @@
 
 .toggleThumb {
   position: absolute;
-  top: 7px;
-  left: 2px;
+  top: 6px;
+  left: 0px;
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -189,7 +189,7 @@
 }
 
 .themeToggle.dark .toggleThumb {
-  transform: translateX(32px);
+  transform: translateX(34px);
 }
 
 .icon {
@@ -213,10 +213,6 @@
 
 .moon {
   right: 4px;
-}
-
-.themeToggle:hover .toggleTrack {
-  border: 2px solid var(--color-primary-dark);
 }
 
 .menuThemeToggle {
