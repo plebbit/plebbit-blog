@@ -36,9 +36,11 @@ const Home = () => {
         <SpinningCoin />
       </div>
       {feed.length === 0 && <div className={styles.stateString}>{stateString}</div>}
-      {feed?.map((post) => (
-        <BlogPost post={post} key={post.cid} />
-      ))}
+      <div className={styles.blogPosts}>
+        {feed?.map((post) => (
+          <BlogPost post={post} key={post.cid} />
+        ))}
+      </div>
     </div>
   );
 };

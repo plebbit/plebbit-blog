@@ -2,8 +2,9 @@
   --background-color: #000;
   --font-family: 'Roboto Mono', monospace;
   --color-1: #00ff00;
-  --color-1-opaque: #03ae03;
+  --color-1-opaque: #00ff0020;
   --color-1-secondary: #03ae03;
+  --color-1-secondary-opaque: #00ff0050;
   --color-2: #e9e76c;
   --color-2-secondary: #a2a037;
   --color-info: #808080;
@@ -15,8 +16,9 @@
   --background-color: #fff;
   --font-family: 'Roboto Mono', monospace;
   --color-1: #000;
-  --color-1-opaque: #a9a9a9;
-  --color-1-secondary: #a9a9a9;
+  --color-1-opaque: #d4d4d4ca;
+  --color-1-secondary: #767676;
+  --color-1-secondary-opaque: #767676;
   --color-2: #343434;
   --color-2-secondary: #343434;
   --color-info: #808080;

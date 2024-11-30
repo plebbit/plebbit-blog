@@ -19,21 +19,22 @@
 .stateString {
   display: inline-block;
   padding-left: 10px;
+  font-size: 14px;
 }
 
 .blogPost {
   font-family: var(--font-family);
   padding: 40px;
   padding-left: 15vw;
-  border-top: 1px solid var(--color-1-secondary);
+  border-top: 1px solid var(--color-1-secondary-opaque);
 }
 
-.blogPost:last-child {
-  border-bottom: 1px solid var(--color-1-secondary);
+.blogPosts {
+  border-bottom: 1px solid var(--color-1-secondary-opaque);
 }
 
 .blogPost:hover {
-  background-color: var(--color-1-secondary);
+  background-color: var(--color-1-opaque);
   cursor: pointer;
 }
 
