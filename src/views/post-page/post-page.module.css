@@ -32,7 +32,7 @@
 
 @media (max-width: 1111px) {
   .post {
-    flex-shrink: 1;
+    display: block;
     border: none;
     padding: 20px 20px 40px 20px;
     width: 100%;
