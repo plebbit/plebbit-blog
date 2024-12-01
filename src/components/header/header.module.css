@@ -23,7 +23,7 @@
 
 .linksRight a:after, .linksLeft a:after, .menuContent a:after {
   background: none repeat scroll 0 0 transparent;
-  bottom: 3px;
+  bottom: 4px;
   content: "";
   display: block;
   height: 1px;
@@ -184,7 +184,7 @@
 
 .toggleThumb {
   position: absolute;
-  top: 0px;
+  top: 1px;
   left: 0px;
   width: 24px;
   height: 24px;
