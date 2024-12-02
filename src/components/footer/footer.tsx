@@ -18,6 +18,11 @@ const Footer = () => {
         </div>
         <div className={styles.footerText}>
           <p>
+            this blog is stored and loaded using the plebbit protocol
+          </p>
+        </div>
+        <div className={styles.footerText}>
+          <p>
             GPLv2 licensed
           </p>
         </div>
