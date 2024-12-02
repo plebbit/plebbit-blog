@@ -15,7 +15,7 @@ const LoadingEllipsis = ({ string }: LoadingEllipsisProps) => {
       {restOfString && ' '}
       <span className={styles.nowrap}>
         {lastWord}
-        <span className={styles.ellipsis}></span>
+        <span className={styles.ellipsis} />
       </span>
     </span>
   );
