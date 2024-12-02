@@ -5,6 +5,7 @@ import useFeedStateString from '../../hooks/use-feed-state-string';
 import LoadingEllipsis from '../../components/loading-ellipsis';
 import { Link, useParams } from 'react-router-dom';
 import { formatLocalizedUTCTimestamp } from '../../lib/time-utils';
+import { useEffect, useState } from 'react';
 
 interface FlairProps {
   flair: {
@@ -58,10 +59,34 @@ const BlogPost = ({post}: {post: Comment}) => {
 
 const Home = () => {
   const { tag } = useParams();
-  const { feed } = useFeed({subplebbitAddresses: ['blog.plebbit.eth']});
-  const stateString = <LoadingEllipsis string={useFeedStateString(['blog.plebbit.eth']) || 'loading'} />;
+  const { feed: unfiltedFeed } = useFeed({subplebbitAddresses: ['blog.plebbit.eth']});
+  const baseStateString = useFeedStateString(['blog.plebbit.eth']) || 'loading';
+  
+  const [showOfflineMessage, setShowOfflineMessage] = useState(false);
 
-  const combinedFeed = feed.filter(post => 
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    
+    if (unfiltedFeed.length === 0) {
+      timeoutId = setTimeout(() => {
+        setShowOfflineMessage(true);
+      }, 10000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [unfiltedFeed.length]);
+
+  const stateString = (
+    <LoadingEllipsis 
+      string={`${baseStateString}${showOfflineMessage ? ', the blog subplebbit might be offline' : ''}`} 
+    />
+  );
+
+  const feed = unfiltedFeed.filter(post => 
     !tag || post.flair?.text === tag
   );
 
@@ -70,9 +95,9 @@ const Home = () => {
       <div className={styles.hero}>
         <SpinningCoin />
       </div>
-      {combinedFeed.length === 0 && <div className={styles.stateString}>{stateString}</div>}
+      {feed.length === 0 && <div className={styles.stateString}>{stateString}</div>}
       <div className={styles.blogPosts}>
-        {combinedFeed?.map((post) => (
+        {feed?.map((post) => (
           <BlogPost post={post} key={post.cid} />
         ))}
       </div>
