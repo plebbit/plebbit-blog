@@ -20,6 +20,15 @@
   display: inline-block;
   padding-left: 10px;
   font-size: 14px;
+  width: 100%;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.nowrap {
+  display: inline-block;
+  white-space: nowrap;
+  min-width: 50px;
 }
 
 .blogPost {
