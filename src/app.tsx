@@ -30,6 +30,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={globalLayout}>
           <Route index element={<Home />} />
+          <Route path="/tag/:tag" element={<Home />} />
           <Route path="/c/:commentCid" element={<PostPage />} />
         </Route>
       </Routes>

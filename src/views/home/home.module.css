@@ -72,3 +72,18 @@
 .blogPostContainer a {
   text-decoration: none;
 }
+
+.flairsLine {
+  margin-top: 5px;
+}
+
+.flair {
+  color: var(--color-1-secondary);
+  opacity: 0.8;
+}
+
+.flair:hover {
+  opacity: 1;
+  color: var(--color-1);
+  cursor: pointer;
+}
