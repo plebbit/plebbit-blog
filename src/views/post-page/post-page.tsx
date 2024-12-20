@@ -109,6 +109,12 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
         <span className={styles.author}>u/{comment.author?.shortAddress || 'Anonymous'}</span>
         <span className={styles.separator} />
         <span className={styles.timestamp}>{getFormattedDate(comment.timestamp, 'en-US')}</span>
+        {comment.pinned && (
+          <>
+            <span className={styles.separator} />
+            <span className={styles.pinned}>pinned</span>
+          </>
+        )}
       </div>
       <span className={`${styles.content} ${expanded ? styles.expanded : ''}`}>
         {comment?.link && (
