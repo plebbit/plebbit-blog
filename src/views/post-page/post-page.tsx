@@ -58,7 +58,7 @@ const Post = ({comment}: {comment: Comment}) => {
         <div className={styles.secondLine}> 
           <div>
             <span className={styles.author}>by u/{author?.shortAddress || 'Anonymous'}</span>
-            {windowWidth > 930 && <span className={styles.separator} />}
+            {windowWidth > 1111 && <span className={styles.separator} />}
             <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</span>
           </div>
           <div>
@@ -105,9 +105,11 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
 
   return (
     <div className={`${styles.reply} ${depth > 0 ? styles.nestedReply : ''}`}>
-      <span className={styles.author}>u/{comment.author?.shortAddress || 'Anonymous'}</span>
-      <span className={styles.separator} />
-      <span className={styles.timestamp}>{getFormattedDate(comment.timestamp, 'en-US')}</span>
+      <div className={styles.replyHeader}>
+        <span className={styles.author}>u/{comment.author?.shortAddress || 'Anonymous'}</span>
+        <span className={styles.separator} />
+        <span className={styles.timestamp}>{getFormattedDate(comment.timestamp, 'en-US')}</span>
+      </div>
       <span className={`${styles.content} ${expanded ? styles.expanded : ''}`}>
         {comment?.link && (
           <span className={styles.mediaContainer}>

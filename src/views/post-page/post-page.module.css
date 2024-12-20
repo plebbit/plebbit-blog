@@ -50,8 +50,20 @@
   text-transform: capitalize;
 }
 
+@media (max-width: 640px) {
+  .postPage h1 {
+    font-size: 20px;
+  }
+}
+
 .postPage h2 {
   font-size: 25px;
+}
+
+@media (max-width: 640px) {
+  .postPage h2 {
+    font-size: 20px;
+  }
 }
 
 .noContent {
@@ -68,6 +80,7 @@
   color: var(--color-info);
   padding-bottom: 30px;
   text-align: left;
+  font-size: 14px;
 }
 
 .separator:after {
@@ -211,11 +224,16 @@
 .author {
   color: var(--color-2-secondary);
   font-family: var(--font-family);
+  font-weight: bold;
 }
 
 .reply .author {
   font-family: var(--font-family);
   color: var(--color-2-secondary);
+}
+
+.replyHeader {
+  font-size: 14px;
 }
 
 .reply .content {

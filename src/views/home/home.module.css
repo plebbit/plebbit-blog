@@ -55,6 +55,16 @@
   text-transform: capitalize;
 }
 
+@media (max-width: 640px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .blogPost {
+    padding: 30px;
+  }
+}
+
 .author {
   color: var(--color-2-secondary);
   font-size: 15px;
