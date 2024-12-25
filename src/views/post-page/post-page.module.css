@@ -162,6 +162,12 @@
   width: 100%;
 }
 
+@media (max-width: 640px) {
+  .backToFeed span:after {
+    display: none;
+  }
+}
+
 .backToFeed span:hover:after { 
   transform: scaleX(1);
 }
@@ -178,6 +184,12 @@
   background: var(--color-1);
   transition: width 0.3s ease 0s, left 0.3s ease 0s;
   width: 0;
+}
+
+@media (max-width: 640px) {
+  .backToTop span:after {
+    display: none;
+  }
 }
 
 .backToTop span:hover:after {

@@ -51,6 +51,12 @@
   left: 0; 
 }
 
+@media (max-width: 640px) {
+  .footerLinks a:after {
+    display: none;
+  }
+}
+
 .footerText {
   text-align: center;
   margin-top: 15px;

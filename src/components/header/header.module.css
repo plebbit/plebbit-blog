@@ -78,6 +78,12 @@
   }
 }
 
+@media (max-width: 640px) {
+  .linksRight a:after, .linksLeft a:after, .menuContent a:after {
+    display: none;
+  }
+}
+
 .linksLeft {
   float: left;
 }
