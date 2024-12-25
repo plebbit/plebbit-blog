@@ -41,8 +41,8 @@ const HamburgerMenu = () => {
           <a href="https://plebbit.com" target="_blank" rel="noreferrer noopener">About</a>
           <a href="https://explorer.gitcoin.co/#/projects/0xeb6fd033609d6978f8df55dfe05c58750ee086986d276b6897a0b9256b58c005" target="_blank" rel="noreferrer noopener">Donate</a>
           <a href="https://github.com/plebbit/Whitepaper/discussions/2" target="_blank" rel="noreferrer noopener">Whitepaper</a>
-          <a href="https://github.com/plebbit/plebbit-js" target="_blank" rel="noreferrer noopener">Source Code</a>
-          <a href="https://github.com/plebbit/docs" target="_blank" rel="noreferrer noopener">Docs</a>
+          <a href="https://github.com/plebbit" target="_blank" rel="noreferrer noopener">Source Code</a>
+          <a href="https://plebbit.github.io/docs/" target="_blank" rel="noreferrer noopener">Docs</a>
           <div className={styles.menuThemeToggle}>
             <ThemeToggle />
           </div>
