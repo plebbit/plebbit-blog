@@ -20,7 +20,7 @@
   color: var(--color-1);
   text-decoration: none;
   position: relative;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .footerLinks a:hover {
