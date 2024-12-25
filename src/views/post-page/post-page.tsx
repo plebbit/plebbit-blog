@@ -106,7 +106,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
   return (
     <div className={`${styles.reply} ${depth > 0 ? styles.nestedReply : ''}`}>
       <div className={styles.replyHeader}>
-        <span className={styles.author}>u/{comment.author?.shortAddress || 'Anonymous'}</span>
+        <span className={styles.author}>{comment.deleted ? '[deleted]' : comment.removed ? '[removed]' : `u/${comment.author?.shortAddress || 'Anonymous'}`}</span>
         <span className={styles.separator} />
         <span className={styles.timestamp}>{getFormattedDate(comment.timestamp, 'en-US')}</span>
         {comment.pinned && (
@@ -117,7 +117,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
         )}
       </div>
       <span className={`${styles.content} ${expanded ? styles.expanded : ''}`}>
-        {comment?.link && (
+        {comment?.link && !(comment.removed || comment.deleted) && (
           <span className={styles.mediaContainer}>
             {expanded && commentMediaInfo ? 
               <span className={styles.media} onClick={() => commentMediaInfo?.type === 'image' || commentMediaInfo?.type === 'gif' || commentMediaInfo?.type === 'webpage' ? toggleExpanded() : null}>
@@ -128,11 +128,13 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
           </span>
         )}
         <span className={styles.textContent}> 
-          <Markdown content={comment.content || ''} />
+          {comment.removed || comment.deleted ? '' : <Markdown content={comment.content || ''} />}
           {state === 'pending' && <div>{loadingString}</div>}
-        <div className={styles.replyButton}>
-          <button onClick={() => setIsReplying(true)}>reply</button>
-        </div>
+          {!comment.removed && !comment.deleted && (
+            <div className={styles.replyButton}>
+              <button onClick={() => setIsReplying(true)}>reply</button>
+            </div>
+          )}
         {isReplying && (
           <div className={styles.replyForm}>
             <br />
@@ -165,9 +167,9 @@ const PostPage = () => {
   
   const replies = useReplies(comment);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div className={styles.postPage}>
