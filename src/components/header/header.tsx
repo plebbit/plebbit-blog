@@ -105,8 +105,8 @@ const Header = () => {
       </Link>
       {!isMobile && (
         <span className={styles.linksRight}>
-          <a href="https://github.com/plebbit/plebbit-js" target="_blank" rel="noreferrer noopener">Source Code</a>
-          <a href="https://github.com/plebbit/docs" target="_blank" rel="noreferrer noopener">Docs</a>
+          <a href="https://github.com/plebbit" target="_blank" rel="noreferrer noopener">Source Code</a>
+          <a href="https://plebbit.github.io/docs/" target="_blank" rel="noreferrer noopener">Docs</a>
           <ThemeToggle />
         </span>
       )}
