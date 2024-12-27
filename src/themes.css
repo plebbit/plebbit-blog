@@ -9,7 +9,7 @@
   --color-2-secondary: #a2a037;
   --color-info: #808080;
   --color-post: #fff;
-  --hero-image: url('/public/assets/hero-dark.png');
+  --hero-image: var(--dark-hero-url);
 }
 
 :root .light {
@@ -23,5 +23,5 @@
   --color-2-secondary: #343434;
   --color-info: #808080;
   --color-post: #000;
-  --hero-image: url('/public/assets/hero-light.png');
+  --hero-image: var(--light-hero-url);
 }

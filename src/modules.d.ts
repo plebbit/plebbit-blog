@@ -5,3 +5,8 @@ declare module '*.module.css' {
 
 declare module 'memoizee';
 declare module 'ext-name';
+
+declare module '*.png' {
+  const content: string;
+  export default content;
+}

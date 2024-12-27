@@ -6,13 +6,18 @@ import Footer from './components/footer/footer';
 import ChallengeModal from './components/challenge-modal/challenge-modal';
 import useTheme from './hooks/use-theme';
 import { useEffect } from 'react';
+import { darkHero, lightHero } from './lib/preloaded-assets';
 
 const App = () => {
   const [theme] = useTheme();
+
   useEffect(() => {
     document.body.classList.forEach((className) => document.body.classList.remove(className));
     document.body.classList.add(theme);
   }, [theme]);
+
+  document.documentElement.style.setProperty('--dark-hero-url', `url(${darkHero})`);
+  document.documentElement.style.setProperty('--light-hero-url', `url(${lightHero})`);
 
   const globalLayout = (
     <>
