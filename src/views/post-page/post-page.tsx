@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
+import { useComment, Comment, importAccount, useAccounts, setActiveAccount, deleteAccount, useAccount } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
 import { CommentMediaInfo } from '../../lib/media-utils';
 import { formatLocalizedUTCTimestamp, getFormattedDate } from '../../lib/time-utils';
@@ -14,8 +14,8 @@ import ReplyForm from '../../components/reply-form';
 import LoadingEllipsis from '../../components/loading-ellipsis';
 import useStateString from '../../hooks/use-state-string';
 import useWindowWidth from '../../hooks/use-window-width';
+import useAccountImportStore from '../../stores/use-account-import-store';
 
-const hasImportedAccount = true;
 
 const getReadingTime = (text: string) => {
   const wordsPerMinute = 225;
@@ -108,6 +108,8 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
   const stateString = useStateString(comment);
   const loadingString = stateString && <span className={styles.stateString}>{stateString !== 'Failed' ? <LoadingEllipsis string={stateString} /> : ''}</span>;
 
+  const { hasImportedAccount } = useAccountImportStore();
+
   return (
     <div className={`${styles.reply} ${depth > 0 ? styles.nestedReply : ''}`}>
       <div className={styles.replyHeader}>
@@ -172,10 +174,79 @@ const PostPage = () => {
   
   const replies = useReplies(comment);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
+  const [switchToLastAccount, setSwitchToLastAccount] = useState(false);
+  const account = useAccount();
+  const { accounts } = useAccounts();
+
+  useEffect(() => {
+    if (switchToLastAccount && accounts.length > 0) {
+      const lastAccount = accounts[accounts.length - 1];
+      setActiveAccount(lastAccount.name);
+      setSwitchToLastAccount(false);
+      // delete other accounts
+      for (let i = 0; i < accounts.length; i++) {
+        if (accounts[i].name !== lastAccount.name) {
+          deleteAccount(accounts[i].name);
+        }
+      }
+    }
+  }, [accounts, switchToLastAccount]);
+
+  const { setHasImportedAccount } = useAccountImportStore();
+
+  const _importAccount = async () => {
+    if (accounts.length > 0 && hasImportedAccount) {
+      if (!window.confirm(`Changing account will delete the existing active account (u/${account?.author?.shortAddress}). Continue?`)) {
+        return;
+      }
+    }
+    // Create a file input element
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+
+    // Handle file selection
+    fileInput.onchange = async (event) => {
+      try {
+        const files = (event.target as HTMLInputElement).files;
+        if (!files || files.length === 0) {
+          throw new Error('No file selected.');
+        }
+        const file = files[0];
+
+        // Read the file content
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          const fileContent = e.target!.result; // Non-null assertion
+          if (typeof fileContent !== 'string') {
+            throw new Error('File content is not a string.');
+          }
+          const newAccount = JSON.parse(fileContent);
+          await importAccount(fileContent);
+          setSwitchToLastAccount(true);
+          setHasImportedAccount(true);
+          alert(`Imported ${newAccount.account?.name}`);
+        };
+        reader.readAsText(file);
+      } catch (error) {
+        if (error instanceof Error) {
+          alert(error.message);
+          console.log(error);
+        } else {
+          console.error('An unknown error occurred:', error);
+        }
+      }
+    };
+
+    // Trigger file selection dialog
+    fileInput.click();
+  };
+
+  const { hasImportedAccount } = useAccountImportStore();
   return (
     <div className={styles.postPage}>
       <div className={styles.post}>
@@ -209,7 +280,7 @@ const PostPage = () => {
         ) : (
           <div className={styles.importNotice}>
             <p>
-              to comment, <span className={styles.importButton}>[import]</span> a plebbit account that has been used to post at least 3 days ago
+              to comment, <span className={styles.importButton} onClick={_importAccount}>[import]</span> a plebbit account that has been used to post at least 3 days ago
             </p>
             <p>
               to create a plebbit account, use a plebbit client, like <a href="https://plebchan.eth.limo/#/" target='_blank' rel='noreferrer noopener'>plebchan</a> or <a href="https://seedit.eth.limo/#/" target='_blank' rel='noreferrer noopener'>seedit</a>

@@ -80,7 +80,7 @@
 }
 
 .optionsButton {
-  font-size: 13px;
+  font-size: 12px;
   float: right;
   margin-top: 5px;
   margin-left: 10px;
@@ -127,7 +127,6 @@
   color: var(--color-1);
   text-align: center;
   text-transform: lowercase;
-
   font-size: 16px;
   font-family: var(--font-family);
 }

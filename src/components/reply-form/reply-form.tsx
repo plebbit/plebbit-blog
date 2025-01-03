@@ -4,6 +4,7 @@ import usePublishReply from '../../hooks/use-publish-reply';
 import styles from './reply-form.module.css';
 import { isValidURL } from '../../lib/url-utils';
 import Markdown from '../markdown/markdown';
+import useAccountImportStore from '../../stores/use-account-import-store';
 
 interface ReplyFormProps {
   cid: string;
@@ -142,20 +143,22 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
   useEffect(() => {
     if (switchToLastAccount && accounts.length > 0) {
       const lastAccount = accounts[accounts.length - 1];
-      setActiveAccount(lastAccount.name);
+      setActiveAccount(lastAccount?.name);
       setSwitchToLastAccount(false);
       // delete other accounts
       for (let i = 0; i < accounts.length; i++) {
-        if (accounts[i].name !== lastAccount.name) {
-          deleteAccount(accounts[i].name);
+        if (accounts[i]?.name !== lastAccount?.name) {
+          deleteAccount(accounts[i]?.name);
         }
       }
     }
   }, [accounts, switchToLastAccount]);
   
+  const { setHasImportedAccount } = useAccountImportStore();
+
   const _importAccount = async () => {
     if (accounts.length > 0) {
-      if (!window.confirm('Importing an account will delete all other accounts. Continue?')) {
+      if (!window.confirm(`Changing account will delete the existing active account (u/${account?.author?.shortAddress}) irreversibly. Continue?`)) {
         return;
       }
     }
@@ -183,7 +186,8 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
           const newAccount = JSON.parse(fileContent);
           await importAccount(fileContent);
           setSwitchToLastAccount(true);
-          alert(`Imported ${newAccount.account?.name}`);
+          setHasImportedAccount(true);
+          alert(`Imported ${newAccount?.account?.name}`);
         };
         reader.readAsText(file);
       } catch (error) {
@@ -215,7 +219,7 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
       // Create a temporary download link
       const link = document.createElement('a');
       link.href = fileUrl;
-      link.download = `${account.name}.json`;
+      link.download = `${account?.name}.json`;
 
       // Append the link, trigger the download, then remove the link
       document.body.appendChild(link);
