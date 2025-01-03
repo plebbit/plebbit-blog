@@ -75,23 +75,30 @@
   text-transform: lowercase;
 }
 
+.bottomArea {
+  color: var(--color-info);
+}
+
 .optionsButton {
   font-size: 13px;
   float: right;
   margin-top: 5px;
   margin-left: 10px;
   margin-right: 5px;
-  color: var(--color-1);
-  cursor: pointer;
   text-transform: lowercase;
   font-family: var(--font-family);
 }
 
+.optionsButtonText:hover {
+  color: var(--color-1);
+  cursor: pointer;
+}
+
 .options {
-  font-size: 13px;
+  font-size: 12px;
   padding-bottom: 2px;
   padding-top: 2px;
-  color: var(--color-1);
+  color: var(--color-info);
   font-family: var(--font-family);
 }
 

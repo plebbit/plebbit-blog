@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useComment, Comment, useAccount } from '@plebbit/plebbit-react-hooks';
+import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
 import { CommentMediaInfo } from '../../lib/media-utils';
 import { formatLocalizedUTCTimestamp, getFormattedDate } from '../../lib/time-utils';
@@ -166,7 +166,6 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
 };
 
 const PostPage = () => {
-  const account = useAccount();
   const navigate = useNavigate();
   const comment = useComment({ commentCid: useParams().commentCid });
   const { replyCount } = comment || {};

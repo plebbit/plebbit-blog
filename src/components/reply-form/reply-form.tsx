@@ -144,10 +144,21 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
       const lastAccount = accounts[accounts.length - 1];
       setActiveAccount(lastAccount.name);
       setSwitchToLastAccount(false);
+      // delete other accounts
+      for (let i = 0; i < accounts.length; i++) {
+        if (accounts[i].name !== lastAccount.name) {
+          deleteAccount(accounts[i].name);
+        }
+      }
     }
   }, [accounts, switchToLastAccount]);
   
   const _importAccount = async () => {
+    if (accounts.length > 0) {
+      if (!window.confirm('Importing an account will delete all other accounts. Continue?')) {
+        return;
+      }
+    }
     // Create a file input element
     const fileInput = document.createElement('input');
     fileInput.type = 'file';
@@ -223,18 +234,6 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
     }
   };
 
-  const _deleteAccount = (accountName: string) => {
-    if (!accountName) {
-      return;
-    } else if (window.confirm(`Are you sure you want to delete ${accountName}?`)) {
-      if (window.confirm(`Are you really sure? This action is irreversible.`)) {
-        deleteAccount(accountName);
-      }
-    } else {
-      return;
-    }
-  };
-
   return (
     <div className={mdContainerClass}>
       <div className={styles.accountInfo}>
@@ -243,8 +242,6 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
         <span className={styles.accountButton} onClick={_importAccount}>change</span>
         ][
           <span className={styles.accountButton} onClick={_exportAccount}>download</span>
-        ][
-          <span className={styles.accountButton} onClick={() => _deleteAccount(account?.name)}>delete</span>
         ]
       </div>
       <div className={styles.md}>
@@ -270,10 +267,18 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
           </button>
         )}
         <span className={styles.optionsButton} onClick={() => setShowFormattingHelp(!showFormattingHelp)}>
-          {showFormattingHelp ? 'hide help' : 'formatting help'}
+          [
+            <span className={styles.optionsButtonText}>
+              {showFormattingHelp ? 'hide help' : 'formatting help'}
+            </span>
+          ]
         </span>
         <span className={styles.optionsButton} onClick={() => setShowOptions(!showOptions)}>
-          {showOptions ? 'hide options' : 'options'}
+          [
+            <span className={styles.optionsButtonText}>
+              {showOptions ? 'hide options' : 'options'}
+            </span>
+          ]
         </span>
       </div>
       {showFormattingHelp && <FormattingHelpTable />}
