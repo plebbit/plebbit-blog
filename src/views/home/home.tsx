@@ -36,13 +36,14 @@ const Flair = ({ flair }: FlairProps) => {
 
 const BlogPost = ({post}: {post: Comment}) => {
   const { author, cid, flair, replyCount, timestamp, title } = post || {};
+  const { displayName, shortAddress } = author;
   return (
     <div className={styles.blogPostContainer}>
       <Link to={`/c/${cid}`}>
         <div className={styles.blogPost}>
           <div className={styles.title}>{title}</div>
           <div className={styles.secondLine}>
-            <span className={styles.author}>by {author?.shortAddress || 'Anonymous'}</span>
+            <span className={styles.author}>by {displayName ? `${displayName} ` : ""}{`u/${shortAddress}` || 'Anonymous'}</span>
             <span className={styles.separator} />
             <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(timestamp, 'en-US')}</span>
             <span className={styles.separator} />

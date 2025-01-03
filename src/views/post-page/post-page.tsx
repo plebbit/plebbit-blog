@@ -46,6 +46,7 @@ const Media = ({commentMediaInfo, expanded}: {commentMediaInfo: CommentMediaInfo
 
 const Post = ({comment}: {comment: Comment}) => {
   const { author, content, timestamp, title, replyCount } = comment || {};
+  const { displayName, shortAddress } = author || {};
   const isMobile = useIsMobile();
   const windowWidth = useWindowWidth();
   const commentMediaInfo = useCommentMediaInfo(comment);
@@ -57,7 +58,7 @@ const Post = ({comment}: {comment: Comment}) => {
       {isMobile ? (
         <div className={styles.secondLine}> 
           <div>
-            <span className={styles.author}>by u/{author?.shortAddress || 'Anonymous'}</span>
+            <span className={styles.author}>by {displayName ? `${displayName} ` : ""}{`u/${shortAddress}` || 'Anonymous'}</span>
             {windowWidth > 1111 && <span className={styles.separator} />}
             <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</span>
           </div>
@@ -68,8 +69,8 @@ const Post = ({comment}: {comment: Comment}) => {
         </div>
       ) : (
         <div className={styles.secondLine}>
-          <span className={styles.author}>by u/{author?.shortAddress || 'Anonymous'}</span>
-          <span className={styles.separator} />
+          <span className={styles.author}>by {displayName ? `${displayName} ` : ""}{`u/${shortAddress}` || 'Anonymous'}</span>
+            <span className={styles.separator} />
           <span className={styles.timestamp}>{formatLocalizedUTCTimestamp(timestamp, 'en-US')}</span>
           <span className={styles.separator} />
           <span className={styles.comments}>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</span>
@@ -93,6 +94,8 @@ const Post = ({comment}: {comment: Comment}) => {
 };
 
 const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
+  const { author, deleted, removed } = comment || {};
+  const { displayName, shortAddress } = author || {};
   const [isReplying, setIsReplying] = useState(false);
   const { state } = comment || {};
   const replies = useReplies(comment);
@@ -106,7 +109,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
   return (
     <div className={`${styles.reply} ${depth > 0 ? styles.nestedReply : ''}`}>
       <div className={styles.replyHeader}>
-        <span className={styles.author}>{comment.deleted ? '[deleted]' : comment.removed ? '[removed]' : `u/${comment.author?.shortAddress || 'Anonymous'}`}</span>
+        <span className={styles.author}>{deleted ? '[deleted]' : removed ? '[removed]' : `${displayName ? `${displayName} ` : ""}u/${shortAddress}` || 'Anonymous'}</span>
         <span className={styles.separator} />
         <span className={styles.timestamp}>{getFormattedDate(comment.timestamp, 'en-US')}</span>
         {comment.pinned && (
@@ -117,7 +120,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
         )}
       </div>
       <span className={`${styles.content} ${expanded ? styles.expanded : ''}`}>
-        {comment?.link && !(comment.removed || comment.deleted) && (
+        {comment?.link && !(removed || deleted) && (
           <span className={styles.mediaContainer}>
             {expanded && commentMediaInfo ? 
               <span className={styles.media} onClick={() => commentMediaInfo?.type === 'image' || commentMediaInfo?.type === 'gif' || commentMediaInfo?.type === 'webpage' ? toggleExpanded() : null}>
@@ -128,9 +131,9 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
           </span>
         )}
         <span className={styles.textContent}> 
-          {comment.removed || comment.deleted ? '' : <Markdown content={comment.content || ''} />}
+          {removed || deleted ? '' : <Markdown content={comment.content || ''} />}
           {state === 'pending' && <div>{loadingString}</div>}
-          {!comment.removed && !comment.deleted && (
+          {!removed && !deleted && (
             <div className={styles.replyButton}>
               <button onClick={() => setIsReplying(true)}>reply</button>
             </div>
