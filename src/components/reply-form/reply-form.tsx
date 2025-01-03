@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { deleteAccount, exportAccount, importAccount, setActiveAccount, useAccount, useAccounts } from '@plebbit/plebbit-react-hooks';
 import usePublishReply from '../../hooks/use-publish-reply';
 import styles from './reply-form.module.css';
 import { isValidURL } from '../../lib/url-utils';
@@ -80,6 +81,7 @@ export const FormattingHelpTable = () => {
 };
 
 const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitAddress }: ReplyFormProps) => {
+  const account = useAccount();
   const [showOptions, setShowOptions] = useState(false);
   const [showFormattingHelp, setShowFormattingHelp] = useState(false);
 
@@ -133,8 +135,118 @@ const ReplyForm = ({ cid, hideReplyForm, isReplyingToReply, postCid, subplebbitA
     }
   }, [replyIndex, resetContent, hideReplyForm]);
 
+
+  const [switchToLastAccount, setSwitchToLastAccount] = useState(false);
+  const { accounts } = useAccounts();
+
+  useEffect(() => {
+    if (switchToLastAccount && accounts.length > 0) {
+      const lastAccount = accounts[accounts.length - 1];
+      setActiveAccount(lastAccount.name);
+      setSwitchToLastAccount(false);
+    }
+  }, [accounts, switchToLastAccount]);
+  
+  const _importAccount = async () => {
+    // Create a file input element
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.accept = '.json';
+
+    // Handle file selection
+    fileInput.onchange = async (event) => {
+      try {
+        const files = (event.target as HTMLInputElement).files;
+        if (!files || files.length === 0) {
+          throw new Error('No file selected.');
+        }
+        const file = files[0];
+
+        // Read the file content
+        const reader = new FileReader();
+        reader.onload = async (e) => {
+          const fileContent = e.target!.result; // Non-null assertion
+          if (typeof fileContent !== 'string') {
+            throw new Error('File content is not a string.');
+          }
+          const newAccount = JSON.parse(fileContent);
+          await importAccount(fileContent);
+          setSwitchToLastAccount(true);
+          alert(`Imported ${newAccount.account?.name}`);
+        };
+        reader.readAsText(file);
+      } catch (error) {
+        if (error instanceof Error) {
+          alert(error.message);
+          console.log(error);
+        } else {
+          console.error('An unknown error occurred:', error);
+        }
+      }
+    };
+
+    // Trigger file selection dialog
+    fileInput.click();
+  };
+
+  const _exportAccount = async () => {
+    try {
+      const accountString = await exportAccount();
+      const accountObject = JSON.parse(accountString);
+      const formattedAccountJson = JSON.stringify(accountObject, null, 2);
+
+      // Create a Blob from the JSON string
+      const blob = new Blob([formattedAccountJson], { type: 'application/json' });
+
+      // Create a URL for the Blob
+      const fileUrl = URL.createObjectURL(blob);
+
+      // Create a temporary download link
+      const link = document.createElement('a');
+      link.href = fileUrl;
+      link.download = `${account.name}.json`;
+
+      // Append the link, trigger the download, then remove the link
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      // Release the Blob URL
+      URL.revokeObjectURL(fileUrl);
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+        console.log(error);
+      } else {
+        console.error('An unknown error occurred:', error);
+      }
+    }
+  };
+
+  const _deleteAccount = (accountName: string) => {
+    if (!accountName) {
+      return;
+    } else if (window.confirm(`Are you sure you want to delete ${accountName}?`)) {
+      if (window.confirm(`Are you really sure? This action is irreversible.`)) {
+        deleteAccount(accountName);
+      }
+    } else {
+      return;
+    }
+  };
+
   return (
     <div className={mdContainerClass}>
+      <div className={styles.accountInfo}>
+        using account: <span className={styles.accountAddress}>u/{account?.author?.shortAddress} </span>
+        [
+        <span className={styles.accountButton} onClick={_importAccount}>change</span>
+        ][
+          <span className={styles.accountButton} onClick={_exportAccount}>download</span>
+        ][
+          <span className={styles.accountButton} onClick={() => _deleteAccount(account?.name)}>delete</span>
+        ]
+      </div>
       <div className={styles.md}>
         <div className={styles.options}>
           <span className={urlClass}>

@@ -39,8 +39,11 @@
   cursor: pointer;
 }
 
-.mdContainerReplying {
-  margin-left: 25px;
+.accountInfo {
+  display: block;
+  font-size: 12px;
+  color: var(--color-info);
+  margin-bottom: 5px;
 }
 
 .urlHidden, .spoilerHidden {
@@ -152,4 +155,17 @@
 .editSaveButtons {
   width: 100%;
   display: inline-block;
+}
+
+.accountAddress {
+  color: var(--color-2-secondary);
+}
+
+.accountButton {
+  color: var(--color-info);
+  cursor: pointer;
+}
+
+.accountButton:hover {
+  color: var(--color-1);
 }

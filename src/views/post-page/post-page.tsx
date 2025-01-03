@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
+import { useComment, Comment, useAccount } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
 import { CommentMediaInfo } from '../../lib/media-utils';
 import { formatLocalizedUTCTimestamp, getFormattedDate } from '../../lib/time-utils';
@@ -14,6 +14,8 @@ import ReplyForm from '../../components/reply-form';
 import LoadingEllipsis from '../../components/loading-ellipsis';
 import useStateString from '../../hooks/use-state-string';
 import useWindowWidth from '../../hooks/use-window-width';
+
+const hasImportedAccount = true;
 
 const getReadingTime = (text: string) => {
   const wordsPerMinute = 225;
@@ -133,7 +135,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
         <span className={styles.textContent}> 
           {removed || deleted ? '' : <Markdown content={comment.content || ''} />}
           {state === 'pending' && <div>{loadingString}</div>}
-          {!removed && !deleted && (
+          {!removed && !deleted && hasImportedAccount && (
             <div className={styles.replyButton}>
               <button onClick={() => setIsReplying(true)}>reply</button>
             </div>
@@ -164,15 +166,16 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
 };
 
 const PostPage = () => {
+  const account = useAccount();
   const navigate = useNavigate();
   const comment = useComment({ commentCid: useParams().commentCid });
   const { replyCount } = comment || {};
   
   const replies = useReplies(comment);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div className={styles.postPage}>
@@ -194,15 +197,26 @@ const PostPage = () => {
       </div>
       <div className={styles.replies}>
         <h2>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</h2>
-        <div className={styles.replyForm}>
-          <ReplyForm 
-            cid={comment?.cid || ''} 
-            hideReplyForm={() => {}}
-            isReplyingToReply={false}
-            postCid={comment?.postCid || ''} 
-            subplebbitAddress={comment?.subplebbitAddress || ''} 
-          />
-        </div>
+        {hasImportedAccount ? (
+          <div className={styles.replyForm}>
+            <ReplyForm 
+              cid={comment?.cid || ''} 
+              hideReplyForm={() => {}}
+              isReplyingToReply={false}
+              postCid={comment?.postCid || ''} 
+              subplebbitAddress={comment?.subplebbitAddress || ''} 
+            />
+          </div>
+        ) : (
+          <div className={styles.importNotice}>
+            <p>
+              to comment, <span className={styles.importButton}>[import]</span> a plebbit account that has been used to post at least 3 days ago
+            </p>
+            <p>
+              to create a plebbit account, use a plebbit client, like <a href="https://plebchan.eth.limo/#/" target='_blank' rel='noreferrer noopener'>plebchan</a> or <a href="https://seedit.eth.limo/#/" target='_blank' rel='noreferrer noopener'>seedit</a>
+            </p>
+          </div>
+        )}
         {replies.map((reply, index) => (
           <Reply 
             comment={reply} 
