@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { autoUpdate, flip, FloatingFocusManager, offset, shift, useClick, useDismiss, useFloating, useId, useInteractions, useRole } from '@floating-ui/react';
 import { useComment, Comment, importAccount, useAccounts, setActiveAccount, deleteAccount, useAccount } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
 import { CommentMediaInfo } from '../../lib/media-utils';
@@ -15,6 +16,7 @@ import LoadingEllipsis from '../../components/loading-ellipsis';
 import useStateString from '../../hooks/use-state-string';
 import useWindowWidth from '../../hooks/use-window-width';
 import useAccountImportStore from '../../stores/use-account-import-store';
+import { copyShareLinkToClipboard } from '../../lib/url-utils';
 
 
 const getReadingTime = (text: string) => {
@@ -95,8 +97,30 @@ const Post = ({comment}: {comment: Comment}) => {
   )
 };
 
+const ShareButton = ({ postCid }: { postCid: string }) => {
+  const [hasCopied, setHasCopied] = useState(false);
+
+  useEffect(() => {
+    if (hasCopied) {
+      setTimeout(() => setHasCopied(false), 2000);
+    }
+  }, [hasCopied]);
+
+  return (
+    <div
+    className={styles.menuItem}
+    onClick={() => {
+        setHasCopied(true);
+        copyShareLinkToClipboard(postCid);
+      }}
+    >
+      {hasCopied ? 'link copied' : 'copy link'}
+    </div>
+  );
+};
+
 const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
-  const { author, deleted, removed } = comment || {};
+  const { author, cid, deleted, removed, postCid, subplebbitAddress } = comment || {};
   const { displayName, shortAddress } = author || {};
   const [isReplying, setIsReplying] = useState(false);
   const { state } = comment || {};
@@ -109,6 +133,21 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
   const loadingString = stateString && <span className={styles.stateString}>{stateString !== 'Failed' ? <LoadingEllipsis string={stateString} /> : ''}</span>;
 
   const { hasImportedAccount } = useAccountImportStore();
+
+  const [isShareMenuOpen, setIsShareMenuOpen] = useState(false);
+
+  const { refs, floatingStyles, context } = useFloating({
+    placement: 'bottom-start',
+    open: isShareMenuOpen,
+    onOpenChange: setIsShareMenuOpen,
+    middleware: [offset(2), flip({ fallbackAxisSideDirection: 'end' }), shift()],
+    whileElementsMounted: autoUpdate,
+  });
+  const click = useClick(context);
+  const dismiss = useDismiss(context);
+  const role = useRole(context);
+  const { getFloatingProps } = useInteractions([click, dismiss, role]);
+  const headingId = useId();
 
   return (
     <div className={`${styles.reply} ${depth > 0 ? styles.nestedReply : ''}`}>
@@ -138,22 +177,42 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
           {removed || deleted ? '' : <Markdown content={comment.content || ''} />}
           {state === 'pending' && <div>{loadingString}</div>}
           {!removed && !deleted && hasImportedAccount && (
-            <div className={styles.replyButton}>
+            <div className={styles.replyButtons}>
               <button onClick={() => setIsReplying(true)}>reply</button>
+              <button onClick={() => cid && setIsShareMenuOpen(!isShareMenuOpen)} ref={refs.setReference}>share</button>
             </div>
           )}
-        {isReplying && (
-          <div className={styles.replyForm}>
-            <br />
-            <ReplyForm
-              cid={comment.cid}
-              hideReplyForm={() => setIsReplying(false)}
-              isReplyingToReply={true}
-              postCid={comment.postCid}
-              subplebbitAddress={comment.subplebbitAddress}
-              />
-          </div>
-        )}
+          {isShareMenuOpen && (
+            <FloatingFocusManager context={context} modal={false}>
+              <div className={styles.modal} ref={refs.setFloating} style={floatingStyles} aria-labelledby={headingId} {...getFloatingProps()}>
+                <div className={styles.modMenu}>
+                  <ShareButton postCid={postCid} />
+                  <div className={styles.menuItem}>
+                    <a href={`https://seedit.eth.limo/#/p/${subplebbitAddress}/c/${cid}`} target='_blank' rel='noopener noreferrer'>
+                      view on seedit
+                    </a>
+                  </div>
+                  <div className={styles.menuItem}>
+                    <a href={`https://plebchan.eth.limo/#/p/${subplebbitAddress}/c/${cid}`} target='_blank' rel='noopener noreferrer'>
+                      view on plebchan
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </FloatingFocusManager>
+          )}
+          {isReplying && (
+            <div className={styles.replyForm}>
+              <br />
+              <ReplyForm
+                cid={comment.cid}
+                hideReplyForm={() => setIsReplying(false)}
+                isReplyingToReply={true}
+                postCid={comment.postCid}
+                subplebbitAddress={comment.subplebbitAddress}
+                />
+            </div>
+          )}
         </span>
       </span>
       {replies.map((reply) => (

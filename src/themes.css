@@ -1,6 +1,6 @@
 :root .dark {
   --background-color: #000;
-  --font-family: 'Roboto Mono', monospace;
+  --button-hover-background-color: #1f1f1f;
   --color-1: #00ff00;
   --color-1-opaque: #00ff0020;
   --color-1-secondary: #03ae03;
@@ -9,12 +9,13 @@
   --color-2-secondary: #a2a037;
   --color-info: #808080;
   --color-post: #fff;
+  --font-family: 'Roboto Mono', monospace;
   --hero-image: var(--dark-hero-url);
 }
 
 :root .light {
   --background-color: #fff;
-  --font-family: 'Roboto Mono', monospace;
+  --button-hover-background-color: #f0f0f0;
   --color-1: #000;
   --color-1-opaque: #d4d4d4ca;
   --color-1-secondary: #767676;
@@ -23,5 +24,6 @@
   --color-2-secondary: #343434;
   --color-info: #808080;
   --color-post: #000;
+  --font-family: 'Roboto Mono', monospace;
   --hero-image: var(--light-hero-url);
 }

@@ -309,11 +309,11 @@
   flex: 1;
 }
 
-.replyButton {
+.replyButtons {
   float: left;
 }
 
-.replyButton button {
+.replyButtons button {
   color: var(--color-info);
   background: none;
   border: none;
@@ -322,6 +322,7 @@
   cursor: pointer;
   font-weight: 700 !important;
   font-size: 14px;
+  margin-right: 10px;
 }
 
 .importNotice {
@@ -361,4 +362,32 @@
 .accountInfo {
   font-size: 12px;
   color: var(--color-info);
+}
+
+.modal {
+  z-index: 7;
+  background-color: var(--background-color);
+  border: 1px solid var(--color-info);
+  outline: none;
+  font-size: 12px;
+}
+
+.menuItem {
+  color: inherit;
+  cursor: pointer;
+  padding: 2px 3px 1px 3px;
+  display: block;
+}
+
+.menuItem a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menuItem a:focus {
+  outline: none;
+}
+
+.menuItem:hover {
+  background-color: var(--button-hover-background-color);
 }
