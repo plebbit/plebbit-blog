@@ -27,3 +27,5 @@ yarn-error.log*
 bin
 .env
 .deploy-env
+
+.cursor
