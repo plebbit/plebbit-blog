@@ -59,6 +59,7 @@
     "@vitejs/plugin-react": "5.1.2",
     "cross-env": "7.0.3",
     "prettier": "3.3.3",
+    "react-grab": "0.0.94",
     "vite": "7.3.1",
     "vite-plugin-node-polyfills": "0.24.0"
   }
