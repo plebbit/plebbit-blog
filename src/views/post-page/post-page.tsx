@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { autoUpdate, flip, FloatingFocusManager, offset, shift, useClick, useDismiss, useFloating, useId, useInteractions, useRole } from '@floating-ui/react';
-import { useComment, Comment, importAccount, useAccounts, setActiveAccount, deleteAccount, useAccount } from '@plebbit/plebbit-react-hooks';
+import { useComment, Comment } from '@plebbit/plebbit-react-hooks';
 import { useCommentMediaInfo } from '../../hooks/use-comment-media-info';
 import { CommentMediaInfo } from '../../lib/media-utils';
 import { formatLocalizedUTCTimestamp, getFormattedDate } from '../../lib/time-utils';
@@ -178,7 +178,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
           {state === 'pending' && <div>{loadingString}</div>}
           {!removed && !deleted && hasImportedAccount && (
             <div className={styles.replyButtons}>
-              <button onClick={() => setIsReplying(true)}>reply</button>
+              {/* <button onClick={() => setIsReplying(true)}>reply</button> */}
               <button onClick={() => cid && setIsShareMenuOpen(!isShareMenuOpen)} ref={refs.setReference}>share</button>
             </div>
           )}
@@ -201,7 +201,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
               </div>
             </FloatingFocusManager>
           )}
-          {isReplying && (
+          {/* {isReplying && (
             <div className={styles.replyForm}>
               <br />
               <ReplyForm
@@ -212,7 +212,7 @@ const Reply = ({comment, depth = 0}: {comment: Comment, depth: number}) => {
                 subplebbitAddress={comment.subplebbitAddress}
                 />
             </div>
-          )}
+          )} */}
         </span>
       </span>
       {replies.map((reply) => (
@@ -236,76 +236,6 @@ const PostPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const [switchToLastAccount, setSwitchToLastAccount] = useState(false);
-  const account = useAccount();
-  const { accounts } = useAccounts();
-
-  useEffect(() => {
-    if (switchToLastAccount && accounts.length > 0) {
-      const lastAccount = accounts[accounts.length - 1];
-      setActiveAccount(lastAccount.name);
-      setSwitchToLastAccount(false);
-      // delete other accounts
-      for (let i = 0; i < accounts.length; i++) {
-        if (accounts[i].name !== lastAccount.name) {
-          deleteAccount(accounts[i].name);
-        }
-      }
-    }
-  }, [accounts, switchToLastAccount]);
-
-  const { setHasImportedAccount } = useAccountImportStore();
-
-  const _importAccount = async () => {
-    if (accounts.length > 0 && hasImportedAccount) {
-      if (!window.confirm(`Changing account will delete the existing active account (u/${account?.author?.shortAddress}). Continue?`)) {
-        return;
-      }
-    }
-    // Create a file input element
-    const fileInput = document.createElement('input');
-    fileInput.type = 'file';
-    fileInput.accept = '.json';
-
-    // Handle file selection
-    fileInput.onchange = async (event) => {
-      try {
-        const files = (event.target as HTMLInputElement).files;
-        if (!files || files.length === 0) {
-          throw new Error('No file selected.');
-        }
-        const file = files[0];
-
-        // Read the file content
-        const reader = new FileReader();
-        reader.onload = async (e) => {
-          const fileContent = e.target!.result; // Non-null assertion
-          if (typeof fileContent !== 'string') {
-            throw new Error('File content is not a string.');
-          }
-          const newAccount = JSON.parse(fileContent);
-          await importAccount(fileContent);
-          setSwitchToLastAccount(true);
-          setHasImportedAccount(true);
-          alert(`Imported ${newAccount.account?.name}`);
-        };
-        reader.readAsText(file);
-      } catch (error) {
-        if (error instanceof Error) {
-          alert(error.message);
-          console.log(error);
-        } else {
-          console.error('An unknown error occurred:', error);
-        }
-      }
-    };
-
-    // Trigger file selection dialog
-    fileInput.click();
-  };
-
-  const { hasImportedAccount } = useAccountImportStore();
   return (
     <div className={styles.postPage}>
       <div className={styles.post}>
@@ -326,26 +256,15 @@ const PostPage = () => {
       </div>
       <div className={styles.replies}>
         <h2>{replyCount} {replyCount === 1 ? 'comment' : 'comments'}</h2>
-        {hasImportedAccount ? (
-          <div className={styles.replyForm}>
-            <ReplyForm 
-              cid={comment?.cid || ''} 
-              hideReplyForm={() => {}}
-              isReplyingToReply={false}
-              postCid={comment?.postCid || ''} 
-              subplebbitAddress={comment?.subplebbitAddress || ''} 
-            />
-          </div>
-        ) : (
-          <div className={styles.importNotice}>
-            <p>
-              to comment, <span className={styles.importButton} onClick={_importAccount}>[import]</span> a plebbit account that has been used to post at least 3 days ago
-            </p>
-            <p>
-              to create a plebbit account, use a plebbit client, like <a href="https://plebchan.eth.limo/#/" target='_blank' rel='noreferrer noopener'>plebchan</a> or <a href="https://seedit.eth.limo/#/" target='_blank' rel='noreferrer noopener'>seedit</a>
-            </p>
-          </div>
-        )}
+        {/* <div className={styles.replyForm}>
+          <ReplyForm 
+            cid={comment?.cid || ''} 
+            hideReplyForm={() => {}}
+            isReplyingToReply={false}
+            postCid={comment?.postCid || ''} 
+            subplebbitAddress={comment?.subplebbitAddress || ''} 
+          />
+        </div> */}
         {replies.map((reply, index) => (
           <Reply 
             comment={reply} 
