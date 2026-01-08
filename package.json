@@ -7,42 +7,31 @@
   "license": "GPL-2.0-only",
   "private": true,
   "dependencies": {
-    "@floating-ui/react": "^0.27.2",
-    "@plebbit/plebbit-react-hooks": "https://github.com/plebbit/plebbit-react-hooks.git#be1a1f317db7c4096f0d1c79452e13452bf9df78",
-    "@testing-library/jest-dom": "5.17.0",
-    "@testing-library/react": "13.4.0",
-    "@testing-library/user-event": "13.5.0",
-    "@types/jest": "27.5.2",
-    "@types/node": "16.18.119",
+    "@floating-ui/react": "0.27.2",
+    "@plebbit/plebbit-react-hooks": "https://github.com/plebbit/plebbit-react-hooks.git#d17fa5d9b50f6e489f11d67f7e652c69be33cc6d",
+    "@types/node": "20.8.2",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
+    "buffer": "^6.0.3",
+    "crypto-browserify": "^3.12.1",
     "ext-name": "5.0.0",
     "memoizee": "0.4.15",
-    "prettier": "3.3.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-markdown": "8.0.6",
     "react-router-dom": "6.16.0",
-    "react-scripts": "5.0.1",
     "rehype-sanitize": "5.0.1",
     "remark-gfm": "3.0.1",
     "remark-supersub": "1.0.0",
-    "typescript": "4.9.5",
-    "web-vitals": "2.1.4",
+    "stream-browserify": "^3.0.0",
+    "typescript": "5.1.6",
     "zustand": "4.4.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "vite",
+    "build": "cross-env PUBLIC_URL=./ vite build",
+    "preview": "vite preview",
     "prettier": "prettier src/**/*.{js,ts,tsx} --write"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
   },
   "browserslist": {
     "production": [
@@ -57,8 +46,20 @@
     ]
   },
   "lint-staged": {
-    "{src,electron}/**/*.{js,ts,tsx}": [
+    "src/**/*.{js,ts,tsx}": [
       "prettier --write"
     ]
+  },
+  "resolutions": {
+    "elliptic": "6.6.1",
+    "ws": "8.18.3"
+  },
+  "devDependencies": {
+    "@types/memoizee": "0.4.9",
+    "@vitejs/plugin-react": "5.1.2",
+    "cross-env": "7.0.3",
+    "prettier": "3.3.3",
+    "vite": "7.3.1",
+    "vite-plugin-node-polyfills": "0.24.0"
   }
 }
