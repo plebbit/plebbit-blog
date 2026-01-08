@@ -2,10 +2,26 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
+// Plugin to transform HTML asset paths to respect base URL
+function transformHtmlBaseUrl() {
+  return {
+    name: 'transform-html-base-url',
+    transformIndexHtml(html: string) {
+      const base = process.env.PUBLIC_URL || '/';
+      // Replace absolute paths (href="/...", src="/...") with base-relative paths
+      // Exclude /src/ paths as Vite handles those automatically
+      return html
+        .replace(/href="\/(?!src\/)([^"]+)"/g, `href="${base}$1"`)
+        .replace(/src="\/(?!src\/)([^"]+)"/g, `src="${base}$1"`);
+    },
+  };
+}
+
 export default defineConfig({
   base: process.env.PUBLIC_URL || '/',
   plugins: [
     react(),
+    transformHtmlBaseUrl(),
     nodePolyfills({
       // Enable all polyfills needed by plebbit-react-hooks
       include: ['buffer', 'process', 'stream', 'crypto', 'util', 'events', 'path', 'os', 'assert', 'url', 'string_decoder'],
